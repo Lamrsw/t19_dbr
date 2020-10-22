@@ -1,6 +1,8 @@
-## Team 19: Test
+# Download the game
 
-## Test
+The link to download the game is [here](https://youtu.be/dQw4w9WgXcQ)
+
+## How to edit this page
 
 You can use the [editor on GitHub](https://github.com/Lamrsw/t19_dbr/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
 
