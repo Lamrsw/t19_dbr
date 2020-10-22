@@ -1,6 +1,6 @@
 ## Team 19: Test
 
-## Welcome to GitHub Pages
+## Test
 
 You can use the [editor on GitHub](https://github.com/Lamrsw/t19_dbr/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
 
