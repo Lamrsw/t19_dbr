@@ -3,13 +3,13 @@ package com.dbr.game;
 public class Boat {
 
     Integer robustness;
-    Integer speed;
+    public float speed;
     Integer acceleration;
     Integer maneuverability;
     String colour;
     float penaltyTime;
-    Integer xpos;
-    Integer ypos;
+    float xpos;
+    float ypos;
 
     //Used for initialising class
     Boat(Integer robustness, Integer speed, Integer acceleration, Integer maneuverability, String colour, float penaltyTime){
@@ -23,11 +23,11 @@ public class Boat {
     }
 
     //Moves the boats x or y position by given amount
-    public void movex(Integer amount){
+    public void movex(float amount){
         xpos += amount;
     }
 
-    public void movey(Integer amount){
+    public void movey(float amount){
         ypos += amount;
     }
 
@@ -40,11 +40,13 @@ public class Boat {
         ypos = pos;
     }
 
-    public Integer getx(){
+    public float getx(){
+
         return xpos;
     }
 
-    public Integer gety(){
+    public float gety(){
+
         return ypos;
     }
 }
