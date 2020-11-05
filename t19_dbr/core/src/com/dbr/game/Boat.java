@@ -12,7 +12,9 @@ public class Boat extends Rectangle {
     Integer stamina;
 
     //Used for initialising class
-    Boat(Integer health, float speed, Integer acceleration, Integer maneuverability, String colour, float penaltyTime, Integer stamina){
+    Boat(Integer health, float speed, Integer acceleration, Integer maneuverability, String colour, float penaltyTime, Integer stamina,Integer width,Integer height){
+        this.width = width;
+        this.height = height;
         this.health = health;
         this.speed = speed;
         this.acceleration = acceleration;
