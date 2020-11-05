@@ -3,7 +3,6 @@ package com.dbr.game;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Boat extends Rectangle {
-
     Integer health;
     float speed;
     Integer acceleration;
