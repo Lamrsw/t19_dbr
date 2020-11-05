@@ -1,6 +1,6 @@
 # Download the game
 
-The link to download the game is [here](www.google.co.uk).
+The link to download the game is [here](https://github.com/Lamrsw/t19_dbr/tree/main).
 
 ## Downloads
 [Requirements](https://lamrsw.github.io/t19_dbr/Req1.pdf)
