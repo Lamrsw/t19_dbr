@@ -28,7 +28,7 @@ public class DragonBoat extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 
-		boat = new Texture("boat.jpg");
+		boat = new Texture("boat.png");
 
 		obstacleImage = new Texture("obstacle.jpg");
 
