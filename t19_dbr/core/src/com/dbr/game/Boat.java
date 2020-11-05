@@ -1,19 +1,22 @@
 package com.dbr.game;
 
-public class Boat {
+import com.badlogic.gdx.math.Rectangle;
 
-    Integer robustness;
-    public float speed;
+public class Boat extends Rectangle {
+
+    Integer health;
+    float speed;
     Integer acceleration;
     Integer maneuverability;
     String colour;
     float penaltyTime;
     float xpos;
     float ypos;
+    Integer stamina;
 
     //Used for initialising class
-    Boat(Integer robustness, Integer speed, Integer acceleration, Integer maneuverability, String colour, float penaltyTime){
-        this.robustness = robustness;
+    Boat(Integer health, float speed, Integer acceleration, Integer maneuverability, String colour, float penaltyTime, Integer stamina){
+        this.health = health;
         this.speed = speed;
         this.acceleration = acceleration;
         this.maneuverability = maneuverability;
@@ -32,21 +35,38 @@ public class Boat {
     }
 
     //Allows x and y positions to be set directly
-    public void setx(Integer pos){
+    public void setx(float pos){
         xpos = pos;
     }
 
-    public void sety(Integer pos){
+    public void sety(float pos){
         ypos = pos;
     }
 
-    public float getx(){
+    //Returns the x and y values
+    public float getx(){ return xpos; }
 
-        return xpos;
-    }
+    public float gety(){ return ypos; }
 
-    public float gety(){
+    //Health functions
+    public void reduceHealth(Integer amount){ health -= amount; }
 
-        return ypos;
-    }
+    public Integer getHealth(){ return health;}
+
+    public void setHealth(Integer amount){ health = amount;}
+
+    //Stamina functions
+    public void reduceStamina(Integer amount){ stamina -= amount;}
+
+    public Integer getStamina(){ return stamina; }
+
+    public void setStamina(Integer amount){stamina = amount;}
+
+    //Acceleration functions
+    public Integer getAcceleration(){ return acceleration;}
+
+    public void setAcceleration(Integer amount){acceleration = amount;}
+
+    //Colour functions
+    public String getColour(){return colour;}
 }

@@ -21,12 +21,12 @@ public class DragonBoat extends ApplicationAdapter {
 	private Array<Rectangle> obstacles;
 	private long lastDropTime;
 
-	Boat mainBoat = new Boat(10,200, 10 ,10 ,"red", 10);
+	Boat mainBoat = new Boat(10,200, 10 ,10 ,"red", 10,10);
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		img = new Texture("boat.jpg");
 		obstacleImage = new Texture("obstacle.jpg");
 		obstacles = new Array<Rectangle>();
 		spawnObstacle();
@@ -40,6 +40,7 @@ public class DragonBoat extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.draw(img, mainBoat.getx(), mainBoat.gety());
+
 		for(Rectangle obstacle: obstacles){
 			batch.draw(obstacleImage, obstacle.x, obstacle.y);
 		}
