@@ -9,8 +9,6 @@ public class Boat extends Rectangle {
     Integer maneuverability;
     String colour;
     float penaltyTime;
-    float xpos;
-    float ypos;
     Integer stamina;
 
     //Used for initialising class
@@ -26,26 +24,12 @@ public class Boat extends Rectangle {
 
     //Moves the boats x or y position by given amount
     public void movex(float amount){
-        xpos += amount;
+        x += amount;
     }
 
     public void movey(float amount){
-        ypos += amount;
+        y += amount;
     }
-
-    //Allows x and y positions to be set directly
-    public void setx(float pos){
-        xpos = pos;
-    }
-
-    public void sety(float pos){
-        ypos = pos;
-    }
-
-    //Returns the x and y values
-    public float getx(){ return xpos; }
-
-    public float gety(){ return ypos; }
 
     //Health functions
     public void reduceHealth(Integer amount){ health -= amount; }

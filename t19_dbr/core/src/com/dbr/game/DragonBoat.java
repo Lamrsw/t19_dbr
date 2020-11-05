@@ -15,13 +15,14 @@ import com.badlogic.gdx.utils.TimeUtils;
 import java.util.Iterator;
 
 public class DragonBoat extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture boat;
-	Texture obstacleImage;
-	Boat mainBoat;
+	private SpriteBatch batch;
+	private Texture boat;
+	private Texture obstacleImage;
+	private Boat mainBoat;
 
 	private Array<Rectangle> obstacles;
 	private long lastDropTime;
+
 	
 	@Override
 	public void create () {
@@ -49,7 +50,7 @@ public class DragonBoat extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(boat, mainBoat.getx(), mainBoat.gety());
+		batch.draw(boat, mainBoat.x, mainBoat.y);
 
 		for(Rectangle obstacle: obstacles){
 			batch.draw(obstacleImage, obstacle.x, obstacle.y);
@@ -80,8 +81,12 @@ public class DragonBoat extends ApplicationAdapter {
 			obstacle.y -= 200 * Gdx.graphics.getDeltaTime();
 			if(obstacle.y + 64 < 0) iter.remove();
 			if(obstacle.overlaps(mainBoat)){
-				mainBoat.reduceHealth(1);
 				iter.remove();
+				mainBoat.reduceHealth(1);
+				if(mainBoat.getHealth() == 0){
+
+				}
+
 			}
 		}
 
