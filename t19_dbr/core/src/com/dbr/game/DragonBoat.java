@@ -17,31 +17,51 @@ import static com.badlogic.gdx.math.MathUtils.random;
 
 public class DragonBoat extends ApplicationAdapter {
 	private SpriteBatch batch;
+
+	//Texture variables
 	private Texture boat;
 	private Texture obstacleImageA;
 	private Texture obstacleImageB;
 	private Texture obstacleImageC;
 	private Array<Texture> obstacleImage;
+	private Texture barrierImage;
+
+	//Font variables
 	private BitmapFont font;
 
+	//Obstacle variables
 	private Array<Obstacle> obstacles;
 	private long lastDropTime;
 
 	private boolean gameOver = false;
+
+	//Screen variables
 	Integer SCREEN_WIDTH;
 	Integer SCREEN_HEIGHT;
 
 	//Boats
 	private Boat mainBoat;
 	private Boat aiBoatOne;
+	private Boat aiBoatTwo;
+	private Boat aiBoatThree;
+	private Boat aiBoatFour;
 
 
+	//Used to control CPU boat movement
+	private int frameCount;
+	private float aiMoveDistance;
+
+	//barrier variables
+	private Array<Rectangle> barriers;
 	
 	@Override
 	public void create () {
 		//Setting Screen width and height
 		SCREEN_WIDTH = 1280;
 		SCREEN_HEIGHT = 720;
+
+		frameCount = 0;
+		aiMoveDistance = 1;
 
 		//Creating font
 		font = new BitmapFont();
@@ -61,24 +81,46 @@ public class DragonBoat extends ApplicationAdapter {
 		obstacleImage.add(obstacleImageB);
 		obstacleImage.add(obstacleImageC);
 
+		//barrier image
+		barrierImage = new Texture("barrier.jpg");
+
 		//Creating boat as rectangle
-		mainBoat = new Boat(5,200, 10 ,10 ,"red", 10,10, 64, 128);
-		mainBoat.x = SCREEN_WIDTH/2;
+		mainBoat = new Boat(5,200, 10 ,10 ,"red", 10,10, 64, 128,768,512);
+		mainBoat.x = (SCREEN_WIDTH/2)-32;
 		mainBoat.y = 0;
 
 		//Creating CPU boats
-		aiBoatOne = new Boat(2,200,10,10,"red",10,10, 64 , 128);
-		aiBoatOne.x = 300;
-		aiBoatOne.y = 300;
+		aiBoatOne = new Boat(2, 200, 10, 10, "red", 10, 10, 64, 128,256,0);
+		aiBoatOne.x = 96;
+		aiBoatOne.y = 0;
+
+		aiBoatTwo = new Boat(2, 200, 10, 10, "red", 10, 10, 64, 128,512,256);
+		aiBoatTwo.x = 352;
+		aiBoatTwo.y = 0;
+
+		aiBoatThree = new Boat(2, 200, 10, 10, "red", 10, 10, 64, 128,1024,768);
+		aiBoatThree.x = 864;
+		aiBoatThree.y = 0;
+
+		aiBoatFour = new Boat(2, 200, 10, 10, "red", 10, 10, 64, 128,1280,1024);
+		aiBoatFour.x = 1120;
+		aiBoatFour.y = 0;
 
 
 		//Creates obstacle array and spawn the first obstacle
 		obstacles = new Array<Obstacle>();
 		spawnObstacle();
+
+		barriers = new Array<Rectangle>();
+		for(int i= 1;i<6;i++) {
+			createBarrier(i);
+		}
 	}
 
 	@Override
 	public void render () {
+
+		frameCount += 1;
 
 		//Gameover screen rendering - may move to separate file later
 		if(gameOver == true){
@@ -93,7 +135,7 @@ public class DragonBoat extends ApplicationAdapter {
 			font.draw(batch,"Press space to retry.",SCREEN_WIDTH/2,SCREEN_HEIGHT/2-20);
 			batch.end();
 
-			//Allows pressing of space to continute game
+			//Allows pressing of space to continue game
 			if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
 				create();
 				gameOver = false;
@@ -107,31 +149,55 @@ public class DragonBoat extends ApplicationAdapter {
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 			batch.begin();
-			batch.draw(boat, mainBoat.x, mainBoat.y);
-			batch.draw(boat,aiBoatOne.x,aiBoatOne.y);
 
+			//draws each barrier in barriers array
+			for(Rectangle barrier: barriers){
+				batch.draw(barrierImage,barrier.x,barrier.y);
+			}
+
+			//Rendering boats if their health isn't 0
+			batch.draw(boat, mainBoat.x, mainBoat.y);
+
+
+			if(aiBoatOne.getHealth() > 0) {
+				batch.draw(boat, aiBoatOne.x, aiBoatOne.y);
+			}
+			else{
+				aiBoatOne.x = -200;
+				aiBoatOne.y = -200;
+			}
+				batch.draw(boat, aiBoatTwo.x, aiBoatTwo.y);
+				batch.draw(boat, aiBoatThree.x, aiBoatThree.y);
+				batch.draw(boat, aiBoatFour.x, aiBoatFour.y);
+
+			//draws each obstacle currently stored in obstacles array
 			for (Obstacle obstacle : obstacles) {
 				batch.draw(obstacle.getTexture(), obstacle.x, obstacle.y);
 			}
+
 			batch.end();
 
 
 			//Movement options for the boat
 			if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
-				mainBoat.movex(-mainBoat.speed * Gdx.graphics.getDeltaTime());
+				mainBoat.setX(mainBoat.x + (-mainBoat.speed * Gdx.graphics.getDeltaTime()));
 			}
 			if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
-				mainBoat.movex(mainBoat.speed * Gdx.graphics.getDeltaTime());
+				mainBoat.setX(mainBoat.x + (mainBoat.speed * Gdx.graphics.getDeltaTime()));
 			}
 			if (Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) {
-				mainBoat.movey(mainBoat.speed * Gdx.graphics.getDeltaTime());
+				mainBoat.setY(mainBoat.y + (mainBoat.speed * Gdx.graphics.getDeltaTime()));
 			}
 			if (Gdx.input.isKeyPressed(Input.Keys.DOWN) || Gdx.input.isKeyPressed(Input.Keys.S)) {
-				mainBoat.movey(-mainBoat.speed * Gdx.graphics.getDeltaTime());
+				mainBoat.setY(mainBoat.y + (-mainBoat.speed * Gdx.graphics.getDeltaTime()));
 			}
 
-			aiBoatOne.movex(aiBoatOne.speed * Gdx.graphics.getDeltaTime() * random(-1,1));
-			aiBoatOne.movey(aiBoatOne.speed * Gdx.graphics.getDeltaTime()*random(-1,1));
+			//CPU boats random movement
+			aiBoatOne.move(frameCount);
+			aiBoatTwo.move(frameCount);
+			aiBoatThree.move(frameCount);
+			aiBoatFour.move(frameCount);
+
 
 			//Spawns in obstacle after set amount of time
 			if (TimeUtils.nanoTime() - lastDropTime > 1000000000) {
@@ -140,17 +206,10 @@ public class DragonBoat extends ApplicationAdapter {
 
 			//Obstacle movement and collision checking
 			for (Iterator<Obstacle> iter = obstacles.iterator(); iter.hasNext(); ) {
-				Rectangle obstacle = iter.next();
+				Obstacle obstacle = iter.next();
 				obstacle.y -= 200 * Gdx.graphics.getDeltaTime();
 				if (obstacle.y + 64 < 0) iter.remove();
-				if (obstacle.overlaps(mainBoat)) {
-					iter.remove();
-					mainBoat.reduceHealth(1);
-					if (mainBoat.getHealth() == 0) {
-						gameOver = true;
-					}
-
-				}
+				collisionCheck(obstacle, iter);
 
 			}
 		}
@@ -166,6 +225,7 @@ public class DragonBoat extends ApplicationAdapter {
 		obstacleImageC.dispose();
 	}
 
+	//Spawns obstacles in at the top of the screen with a random x value
 	private void spawnObstacle(){
 		Obstacle obstacle = new Obstacle(obstacleImage.get(random(0,2)));
 		obstacle.x = random(0, SCREEN_WIDTH-64);
@@ -174,6 +234,58 @@ public class DragonBoat extends ApplicationAdapter {
 		obstacle.height = 64;
 		obstacles.add(obstacle);
 		lastDropTime = TimeUtils.nanoTime();
+	}
+
+	//Checks collisions between boats and obstacles
+	private void collisionCheck(Obstacle obstacle, Iterator<Obstacle> iter){
+        if (obstacle.overlaps(mainBoat)) {
+			iter.remove();
+			mainBoat.reduceHealth(1);
+			if (mainBoat.getHealth() == 0) {
+				gameOver = true;
+			}
+		}
+        else if(obstacle.overlaps(aiBoatOne)){
+        	iter.remove();
+        	aiBoatOne.reduceHealth(1);
+        	if(aiBoatOne.getHealth() == 0){
+        		aiBoatOne.x = -200;
+        		aiBoatOne.y = -200;
+			}
+		}
+		else if(obstacle.overlaps(aiBoatTwo)){
+			iter.remove();
+			aiBoatTwo.reduceHealth(1);
+			if(aiBoatTwo.getHealth() == 0){
+				aiBoatTwo.x = -200;
+				aiBoatTwo.y = -200;
+			}
+		}
+		else if(obstacle.overlaps(aiBoatThree)){
+			iter.remove();
+			aiBoatThree.reduceHealth(1);
+			if(aiBoatThree.getHealth() == 0){
+				aiBoatThree.x = -200;
+				aiBoatThree.y = -200;
+			}
+		}
+		else if(obstacle.overlaps(aiBoatFour)){
+			iter.remove();
+			aiBoatFour.reduceHealth(1);
+			if(aiBoatFour.getHealth() == 0){
+				aiBoatFour.x = -200;
+				aiBoatFour.y = -200;
+			}
+		}
+    }
+
+    private void createBarrier(int count){
+		Rectangle barrier = new Rectangle();
+		barrier.x = (SCREEN_WIDTH/5)*count;
+		barrier.y = 0;
+		barrier.width = 1;
+		barrier.height = SCREEN_HEIGHT;
+		barriers.add(barrier);
 	}
 
 }
