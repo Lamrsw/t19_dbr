@@ -2,6 +2,9 @@ package com.dbr.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
+
+import java.util.Iterator;
 
 import static com.badlogic.gdx.math.MathUtils.random;
 
@@ -17,6 +20,7 @@ public class Boat extends Rectangle {
     Integer minX;
     float moveDistancex;
     float moveDistancey;
+    int direction =1;
 
     //Used for initialising class
     Boat(Integer health, float speed, Integer acceleration, Integer maneuverability, String colour, float penaltyTime, Integer stamina,Integer width,Integer height, Integer maxX, Integer minX){
@@ -34,8 +38,8 @@ public class Boat extends Rectangle {
 
 
     }
-
-    //Moves the boats x or y position by given amount
+    /*
+    //Moves the boats in random directions
     public void move(int frames){
         //Changes boats direction every 10 frames
         if (frames%10 == 0) {
@@ -56,6 +60,23 @@ public class Boat extends Rectangle {
             this.setY(this.y + (this.speed * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)));
         }
 
+    }
+     */
+
+    public void move(Array<Obstacle> obstacles){
+        if(this.x+64 + (this.speed * Gdx.graphics.getDeltaTime()) >= this.maxX && direction == 1){
+            this.direction = -1;
+        }
+        else if(this.x -(this.speed * Gdx.graphics.getDeltaTime()) <= this.minX && direction == -1){
+            this.direction = 1;
+        }
+        for (Iterator<Obstacle> iter = obstacles.iterator(); iter.hasNext(); ) {
+            Obstacle obstacle = iter.next();
+            if(obstacle.getY()-this.getY() < 200 && obstacle.getX()-this.getX()<64 && obstacle.getX() - this.getX() > -64 ) {
+
+                this.setX(this.x + ((this.speed * Gdx.graphics.getDeltaTime()) * direction));
+            }
+        }
     }
 
     //Health functions
@@ -79,4 +100,10 @@ public class Boat extends Rectangle {
 
     //Colour functions
     public String getColour(){return colour;}
+
+    public void speedCheck(int framecount){
+        if(this.speed >100 && framecount % 60 == 0){
+            speed -=1;
+        }
+    }
 }
