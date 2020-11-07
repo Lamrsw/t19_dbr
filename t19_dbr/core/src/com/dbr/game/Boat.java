@@ -18,7 +18,6 @@ public class Boat extends Rectangle {
     Integer stamina;
     Integer maxX;
     Integer minX;
-    float moveDistancex;
     float moveDistancey;
     int direction =1;
 
