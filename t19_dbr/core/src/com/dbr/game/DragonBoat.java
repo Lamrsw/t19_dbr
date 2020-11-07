@@ -225,10 +225,10 @@ public class DragonBoat extends ApplicationAdapter {
 			}
 
 			//CPU boats random movement
-			aiBoatOne.move(obstacles);
-			aiBoatTwo.move(obstacles);
-			aiBoatThree.move(obstacles);
-			aiBoatFour.move(obstacles);
+			aiBoatOne.move(obstacles,frameCount);
+			aiBoatTwo.move(obstacles,frameCount);
+			aiBoatThree.move(obstacles,frameCount);
+			aiBoatFour.move(obstacles,frameCount);
 
 
 			//Spawns in obstacle after set amount of time
