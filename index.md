@@ -1,6 +1,8 @@
 # Download the game
 
-The link to download the game is [here](https://github.com/Lamrsw/t19_dbr/tree/main).
+Download the latest version of the game[here](https://github.com/Lamrsw/t19_dbr/tree/main).
+
+[Older versions]
 
 ## Downloads
 [Requirements](https://lamrsw.github.io/t19_dbr/Req1.pdf)
