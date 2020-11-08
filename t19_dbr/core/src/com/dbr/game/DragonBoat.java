@@ -66,6 +66,12 @@ public class DragonBoat extends ApplicationAdapter {
     Obstacle finishLine;
     int position;
     int finished = -1;
+
+    //difficulty modifier
+	int difficulty = 0;
+
+	//Leg number
+	int leg = 1;
 	
 	@Override
 	public void create () {
@@ -102,7 +108,7 @@ public class DragonBoat extends ApplicationAdapter {
 		barrierImage = new Texture("barrier.jpg");
 
 		//Creating boat as rectangle
-		mainBoat = new Boat(5,200, 10 ,10 ,"red", 10,10, 64, 128,768,512);
+		mainBoat = new Boat(10,200, 10 ,10 ,"red", 10,10, 64, 128,768,512);
 		mainBoat.x = (SCREEN_WIDTH/2)-32;
 		mainBoat.y = 0;
 
@@ -159,23 +165,15 @@ public class DragonBoat extends ApplicationAdapter {
 
 		//Game over screen rendering - may move to separate file later
 		if(gameOver){
+			gameOverScreen();
+		}
 
-			//Sets game over background to black
-			Gdx.gl.glClearColor(0,0,0,1);
-			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		else if(finished != -1 && leg == 3){
+			endScreen();
+		}
 
-			//Draws game over text on screen
-			batch.begin();
-			font.draw(batch,"Game Over!",(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
-			font.draw(batch,"Press space to retry.",SCREEN_WIDTH/2,SCREEN_HEIGHT/2-20);
-			batch.end();
-
-			//Allows pressing of space to continue game
-			if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-				create();
-				gameOver = false;
-			}
-
+		else if(finished != -1){
+			midScreen();
 		}
 
 		//Rendering for main part of game
@@ -257,7 +255,7 @@ public class DragonBoat extends ApplicationAdapter {
 
 
 			//Spawns in obstacle after set amount of time
-			if (TimeUtils.nanoTime() - lastDropTime > 1000000000) {
+			if (TimeUtils.nanoTime() - lastDropTime > 1000000000-(250000000*difficulty)) {
 				spawnObstacle();
 			}
 
@@ -344,8 +342,9 @@ public class DragonBoat extends ApplicationAdapter {
     }
 
     private void finishCheck(Obstacle finish){
-		if(mainBoat.overlaps(finishLine)){
+		if(mainBoat.overlaps(finishLine) && finished == -1){
 			finished = position;
+			difficulty += 1;
 		}
 		else if(aiBoatOne.overlaps(finishLine)){
 			position += 1;
@@ -382,6 +381,65 @@ public class DragonBoat extends ApplicationAdapter {
 
 	private void drawHealth(int num){
 		batch.draw(healthImage,(num*16)+num,SCREEN_HEIGHT-32);
+	}
+
+	private void gameOverScreen(){
+		//Sets game over background to black
+		Gdx.gl.glClearColor(0,0,0,1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		//Draws game over text on screen
+		batch.begin();
+		font.draw(batch,"Game Over!",(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
+		font.draw(batch,"Press space to retry.",SCREEN_WIDTH/2,SCREEN_HEIGHT/2-20);
+		batch.end();
+
+		//Allows pressing of space to continue game
+		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+			create();
+			gameOver = false;
+		}
+	}
+
+	//Screen for end of 1st and second leg
+	private void midScreen(){
+
+		//Sets game over background to black
+		Gdx.gl.glClearColor(0,0,0,1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		//Draws game over text on screen
+		batch.begin();
+		font.draw(batch,"You finished leg " + leg + " in position: " + finished ,(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
+		font.draw(batch,"Press space to continue.",SCREEN_WIDTH/2,SCREEN_HEIGHT/2-20);
+		batch.end();
+
+		//Allows pressing of space to continue game
+		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+			finished = -1;
+			leg += 1;
+			create();
+		}
+
+	}
+
+	//Screen for end of third leg
+	private void endScreen(){
+		//Sets game over background to black
+		Gdx.gl.glClearColor(0,0,0,1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		//Draws game over text on screen
+		batch.begin();
+		font.draw(batch,"Congratulations you finished the race in position: " + finished ,(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
+		batch.end();
+
+		//Allows pressing of space to continue game
+		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+			finished = -1;
+			leg += 1;
+			create();
+		}
 	}
 
 }
