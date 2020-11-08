@@ -26,6 +26,12 @@ public class DragonBoat extends ApplicationAdapter {
 	private Array<Texture> obstacleImage;
 	private Texture barrierImage;
 
+	//background images
+	private Texture backImage1;
+	private Texture backImage2;
+	private int backImage1y;
+	private int backImage2y;
+
 	//Font variables
 	private BitmapFont font;
 
@@ -81,6 +87,10 @@ public class DragonBoat extends ApplicationAdapter {
 		obstacleImage.add(obstacleImageB);
 		obstacleImage.add(obstacleImageC);
 
+		//background images
+		backImage1 = new Texture("water.png");
+		backImage2 = new Texture("water.png");
+
 		//barrier image
 		barrierImage = new Texture("barrier.jpg");
 
@@ -115,6 +125,9 @@ public class DragonBoat extends ApplicationAdapter {
 		for(int i= 1;i<6;i++) {
 			createBarrier(i);
 		}
+
+		backImage1y = 0;
+		backImage2y = SCREEN_HEIGHT;
 	}
 
 	@Override
@@ -150,6 +163,18 @@ public class DragonBoat extends ApplicationAdapter {
 
 			batch.begin();
 
+			//Drawing scrolling background
+			batch.draw(backImage1,0,backImage1y);
+			batch.draw(backImage2,0,backImage2y);
+			backImage1y -= 1;
+			backImage2y -= 1;
+			if(backImage1y <= -SCREEN_HEIGHT){
+				backImage1y = SCREEN_HEIGHT;
+			}
+			if(backImage2y <= -SCREEN_HEIGHT){
+				backImage2y = SCREEN_HEIGHT;
+			}
+
 			//draws each barrier in barriers array
 			for(Rectangle barrier: barriers){
 				batch.draw(barrierImage,barrier.x,barrier.y);
@@ -177,6 +202,13 @@ public class DragonBoat extends ApplicationAdapter {
 
 			batch.end();
 
+			//decrease boat speed every set number of frames to simulate tiredness
+			mainBoat.speedCheck(frameCount);
+			aiBoatOne.speedCheck(frameCount);
+			aiBoatTwo.speedCheck(frameCount);
+			aiBoatThree.speedCheck(frameCount);
+			aiBoatFour.speedCheck(frameCount);
+
 
 			//Movement options for the boat
 			if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
@@ -193,10 +225,10 @@ public class DragonBoat extends ApplicationAdapter {
 			}
 
 			//CPU boats random movement
-			aiBoatOne.move(frameCount);
-			aiBoatTwo.move(frameCount);
-			aiBoatThree.move(frameCount);
-			aiBoatFour.move(frameCount);
+			aiBoatOne.move(obstacles,frameCount);
+			aiBoatTwo.move(obstacles,frameCount);
+			aiBoatThree.move(obstacles,frameCount);
+			aiBoatFour.move(obstacles,frameCount);
 
 
 			//Spawns in obstacle after set amount of time
