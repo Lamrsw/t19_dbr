@@ -108,24 +108,24 @@ public class DragonBoat extends ApplicationAdapter {
 		barrierImage = new Texture("barrier.jpg");
 
 		//Creating boat as rectangle
-		mainBoat = new Boat(10,200, 10 ,10 ,"red", 10,10, 64, 128,768,512);
+		mainBoat = new Boat(10,200, 1 , 10,10, 64, 128,768,512);
 		mainBoat.x = (SCREEN_WIDTH/2)-32;
 		mainBoat.y = 0;
 
 		//Creating CPU boats
-		aiBoatOne = new Boat(2, 200, 10, 10, "red", 10, 10, 64, 128,256,0);
+		aiBoatOne = new Boat(2, 200, 1,10, 10, 64, 128,256,0);
 		aiBoatOne.x = 96;
 		aiBoatOne.y = 0;
 
-		aiBoatTwo = new Boat(2, 200, 10, 10, "red", 10, 10, 64, 128,512,256);
+		aiBoatTwo = new Boat(2, 200, 1, 10, 10, 64, 128,512,256);
 		aiBoatTwo.x = 352;
 		aiBoatTwo.y = 0;
 
-		aiBoatThree = new Boat(2, 200, 10, 10, "red", 10, 10, 64, 128,1024,768);
+		aiBoatThree = new Boat(2, 200, 1,  10, 10, 64, 128,1024,768);
 		aiBoatThree.x = 864;
 		aiBoatThree.y = 0;
 
-		aiBoatFour = new Boat(2, 200, 10, 10, "red", 10, 10, 64, 128,1280,1024);
+		aiBoatFour = new Boat(2, 200, 1,  10, 10, 64, 128,1280,1024);
 		aiBoatFour.x = 1120;
 		aiBoatFour.y = 0;
 
@@ -235,16 +235,16 @@ public class DragonBoat extends ApplicationAdapter {
 
 			//Movement options for the players boat
 			if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
-				mainBoat.setX(mainBoat.x + (-mainBoat.speed * Gdx.graphics.getDeltaTime()));
+				mainBoat.setX(mainBoat.x + (-mainBoat.speed * mainBoat.acceleration * Gdx.graphics.getDeltaTime()));
 			}
 			if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
-				mainBoat.setX(mainBoat.x + (mainBoat.speed * Gdx.graphics.getDeltaTime()));
+				mainBoat.setX(mainBoat.x + (mainBoat.speed * mainBoat.acceleration * Gdx.graphics.getDeltaTime()));
 			}
 			if (Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) {
-				mainBoat.setY(mainBoat.y + (mainBoat.speed * Gdx.graphics.getDeltaTime()));
+				mainBoat.setY(mainBoat.y + (mainBoat.speed * mainBoat.acceleration * Gdx.graphics.getDeltaTime()));
 			}
 			if (Gdx.input.isKeyPressed(Input.Keys.DOWN) || Gdx.input.isKeyPressed(Input.Keys.S)) {
-				mainBoat.setY(mainBoat.y + (-mainBoat.speed * Gdx.graphics.getDeltaTime()));
+				mainBoat.setY(mainBoat.y + (-mainBoat.speed * mainBoat.acceleration * Gdx.graphics.getDeltaTime()));
 			}
 
 			//CPU boats movement
@@ -403,7 +403,6 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Screen for end of 1st and second leg
 	private void midScreen(){
-
 		//Sets game over background to black
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

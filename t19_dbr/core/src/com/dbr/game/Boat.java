@@ -22,14 +22,13 @@ public class Boat extends Rectangle {
     int direction =1;
 
     //Used for initialising class
-    Boat(Integer health, float speed, Integer acceleration, Integer maneuverability, String colour, float penaltyTime, Integer stamina,Integer width,Integer height, Integer maxX, Integer minX){
+    Boat(Integer health, float speed, Integer acceleration, Integer maneuverability, float penaltyTime,Integer width,Integer height, Integer maxX, Integer minX){
         this.width = width;
         this.height = height;
         this.health = health;
         this.speed = speed;
         this.acceleration = acceleration;
         this.maneuverability = maneuverability;
-        this.colour = colour;
         this.penaltyTime = penaltyTime;
         this.stamina = stamina;
         this.maxX = maxX;
@@ -48,25 +47,28 @@ public class Boat extends Rectangle {
             if (frames % 20 == 0) {
                 moveDistancey = random(-10, 10);
             }
-            if (this.y + (this.speed * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)) > 1024) {
+            if (y + (speed * acceleration * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)) > 1024) {
                 moveDistancey = random(-10, 0);
-            } else if (this.y + (this.speed * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)) < 0) {
+            } else if (y + (speed * acceleration * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)) < 0) {
                 moveDistancey = random(0, 10);
             } else {
-                this.setY(this.y + (this.speed * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)));
+                this.setY(y + (speed * acceleration * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)));
             }
 
             //Controls boats x movement, tries to avoid obstacles without leaving its lane
-            if (this.x + 64 + (this.speed * Gdx.graphics.getDeltaTime()) >= this.maxX && direction == 1) {
-                this.direction = -1;
-            } else if (this.x - (this.speed * Gdx.graphics.getDeltaTime()) <= this.minX && direction == -1) {
-                this.direction = 1;
+
+            if (x + 64 + (speed* acceleration * Gdx.graphics.getDeltaTime()) >= maxX && direction == 1) {
+                direction = -1;
+
+            } else if (x - (speed * acceleration * Gdx.graphics.getDeltaTime()) <= minX && direction == -1) {
+                direction = 1;
             }
+
             for (Iterator<Obstacle> iter = obstacles.iterator(); iter.hasNext(); ) {
                 Obstacle obstacle = iter.next();
-                if (obstacle.getY() - this.getY() < 200 && obstacle.getX() - this.getX() < 64 && obstacle.getX() - this.getX() > -64) {
+                if (obstacle.getY() - getY() < 200 && obstacle.getX() - getX() < 64 && obstacle.getX() - getX() > -64) {
 
-                    this.setX(this.x + ((this.speed * Gdx.graphics.getDeltaTime()) * direction));
+                    setX(x + ((speed* acceleration * Gdx.graphics.getDeltaTime()) * direction));
                 }
             }
         }
@@ -78,13 +80,6 @@ public class Boat extends Rectangle {
     public Integer getHealth(){ return health;}
 
     public void setHealth(Integer amount){ health = amount;}
-
-    //Stamina functions
-    public void reduceStamina(Integer amount){ stamina -= amount;}
-
-    public Integer getStamina(){ return stamina; }
-
-    public void setStamina(Integer amount){stamina = amount;}
 
     //Acceleration functions
     public Integer getAcceleration(){ return acceleration;}
