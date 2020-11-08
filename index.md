@@ -2,7 +2,7 @@
 
 Download the latest version of the game[here](https://github.com/Lamrsw/t19_dbr/tree/main).
 
-[Older versions](https://lamrsw.github.io/t19_dbr/Old%20versions/)
+[Older versions](https://lamrsw.github.io/t19_dbr/Old/)
 
 ## Downloads
 [Requirements](https://lamrsw.github.io/t19_dbr/Req1.pdf)
