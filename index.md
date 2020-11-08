@@ -2,8 +2,6 @@
 
 Download the latest version of the game[here](https://github.com/Lamrsw/t19_dbr/tree/main).
 
-[Older versions](https://lamrsw.github.io/t19_dbr/Old/)
-
 ## Downloads
 [Requirements](https://lamrsw.github.io/t19_dbr/Req1.pdf)
 
@@ -16,5 +14,11 @@ Download the latest version of the game[here](https://github.com/Lamrsw/t19_dbr/
 [Implementation](https://lamrsw.github.io/t19_dbr/Impl1.pdf)
 
 [Optional self-assessment table](https://lamrsw.github.io/t19_dbr/SelfAss1.pdf)
+
+##Older game versions
+
+[6/11/20](https://lamrsw.github.io/t19_dbr/Old%20versions/t19_dbr%206-11.zip)
+
+[8/11/20](https://lamrsw.github.io/t19_dbr/Old%20versions/t19_dbr%208-11.zip)
 
 
