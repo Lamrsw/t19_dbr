@@ -11,7 +11,7 @@ import static com.badlogic.gdx.math.MathUtils.random;
 public class Boat extends Rectangle {
     Integer health;
     float speed;
-    Integer acceleration;
+    float acceleration;
     Integer maneuverability;
     String colour;
     float penaltyTime;
@@ -40,7 +40,7 @@ public class Boat extends Rectangle {
     public void move(Array<Obstacle> obstacles, int frames){
 
         //Boats should only move if they have health left
-        if(this.getHealth() != 0) {
+        if(getHealth() != 0) {
 
 
             //Controls boats y movement which is random and can change every 10 frames
@@ -82,7 +82,7 @@ public class Boat extends Rectangle {
     public void setHealth(Integer amount){ health = amount;}
 
     //Acceleration functions
-    public Integer getAcceleration(){ return acceleration;}
+    public float getAcceleration(){ return acceleration;}
 
     public void setAcceleration(Integer amount){acceleration = amount;}
 
@@ -90,8 +90,13 @@ public class Boat extends Rectangle {
     public String getColour(){return colour;}
 
     public void speedCheck(int framecount){
-        if(this.speed >100 && framecount % 60 == 0){
+        //Decreases boats speed every 60 frames
+        if(speed >100 && framecount % 60 == 0){
             speed -=1;
+        }
+        //Decreases boats acceleration every 240 frames
+        if(acceleration > 0.5 && framecount %240 == 0){
+            acceleration -= 0.1;
         }
     }
 }

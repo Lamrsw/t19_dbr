@@ -41,6 +41,7 @@ public class DragonBoat extends ApplicationAdapter {
 	private Array<Obstacle> obstacles;
 	private long lastDropTime;
 
+	//Game over for when health reaches 0
 	private boolean gameOver = false;
 
 	//Screen variables
@@ -53,7 +54,6 @@ public class DragonBoat extends ApplicationAdapter {
 	private Boat aiBoatTwo;
 	private Boat aiBoatThree;
 	private Boat aiBoatFour;
-
 
 	//Used to control CPU boat movement
 	private int frameCount;
@@ -213,7 +213,7 @@ public class DragonBoat extends ApplicationAdapter {
 			}
 
 			//Drawing finish line after set amount of time;
-            if(frameCount > 240){
+            if(frameCount > 960){
                 batch.draw(finishImage,finishLine.x,finishLine.y);
                 finishDrawn = true;
             }
