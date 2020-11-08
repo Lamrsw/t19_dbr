@@ -40,32 +40,34 @@ public class Boat extends Rectangle {
 
     public void move(Array<Obstacle> obstacles, int frames){
 
-        //Controls boats y movement which is random and can change every 10 frames
-        if (frames%20 == 0) {
-            moveDistancey = random(-10,10);
-        }
-        if(this.y + (this.speed * Gdx.graphics.getDeltaTime() * (moveDistancey/10)) > 1024 ){
-            moveDistancey = random(-10,0);
-        }
-        else if(this.y + (this.speed * Gdx.graphics.getDeltaTime() * (moveDistancey/10)) < 0){
-            moveDistancey = random(0, 10);
-        }
-        else {
-            this.setY(this.y + (this.speed * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)));
-        }
+        //Boats should only move if they have health left
+        if(this.getHealth() != 0) {
 
-        //Controls boats x movement, tries to avoid obstacles without leaving its lane
-        if(this.x+64 + (this.speed * Gdx.graphics.getDeltaTime()) >= this.maxX && direction == 1){
-            this.direction = -1;
-        }
-        else if(this.x -(this.speed * Gdx.graphics.getDeltaTime()) <= this.minX && direction == -1){
-            this.direction = 1;
-        }
-        for (Iterator<Obstacle> iter = obstacles.iterator(); iter.hasNext(); ) {
-            Obstacle obstacle = iter.next();
-            if(obstacle.getY()-this.getY() < 200 && obstacle.getX()-this.getX()<64 && obstacle.getX() - this.getX() > -64 ) {
 
-                this.setX(this.x + ((this.speed * Gdx.graphics.getDeltaTime()) * direction));
+            //Controls boats y movement which is random and can change every 10 frames
+            if (frames % 20 == 0) {
+                moveDistancey = random(-10, 10);
+            }
+            if (this.y + (this.speed * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)) > 1024) {
+                moveDistancey = random(-10, 0);
+            } else if (this.y + (this.speed * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)) < 0) {
+                moveDistancey = random(0, 10);
+            } else {
+                this.setY(this.y + (this.speed * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)));
+            }
+
+            //Controls boats x movement, tries to avoid obstacles without leaving its lane
+            if (this.x + 64 + (this.speed * Gdx.graphics.getDeltaTime()) >= this.maxX && direction == 1) {
+                this.direction = -1;
+            } else if (this.x - (this.speed * Gdx.graphics.getDeltaTime()) <= this.minX && direction == -1) {
+                this.direction = 1;
+            }
+            for (Iterator<Obstacle> iter = obstacles.iterator(); iter.hasNext(); ) {
+                Obstacle obstacle = iter.next();
+                if (obstacle.getY() - this.getY() < 200 && obstacle.getX() - this.getX() < 64 && obstacle.getX() - this.getX() > -64) {
+
+                    this.setX(this.x + ((this.speed * Gdx.graphics.getDeltaTime()) * direction));
+                }
             }
         }
     }

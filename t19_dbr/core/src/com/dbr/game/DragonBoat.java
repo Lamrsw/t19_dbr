@@ -25,6 +25,8 @@ public class DragonBoat extends ApplicationAdapter {
 	private Texture obstacleImageC;
 	private Array<Texture> obstacleImage;
 	private Texture barrierImage;
+	private Texture finishImage;
+	private Texture healthImage;
 
 	//background images
 	private Texture backImage1;
@@ -42,8 +44,8 @@ public class DragonBoat extends ApplicationAdapter {
 	private boolean gameOver = false;
 
 	//Screen variables
-	Integer SCREEN_WIDTH;
-	Integer SCREEN_HEIGHT;
+	int SCREEN_WIDTH;
+	int SCREEN_HEIGHT;
 
 	//Boats
 	private Boat mainBoat;
@@ -55,10 +57,15 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Used to control CPU boat movement
 	private int frameCount;
-	private float aiMoveDistance;
 
 	//barrier variables
 	private Array<Rectangle> barriers;
+
+	//Finish line variables
+    boolean finishDrawn;
+    Obstacle finishLine;
+    int position;
+    int finished = -1;
 	
 	@Override
 	public void create () {
@@ -66,8 +73,8 @@ public class DragonBoat extends ApplicationAdapter {
 		SCREEN_WIDTH = 1280;
 		SCREEN_HEIGHT = 720;
 
+        //Used to keep track of total number of frames
 		frameCount = 0;
-		aiMoveDistance = 1;
 
 		//Creating font
 		font = new BitmapFont();
@@ -126,17 +133,32 @@ public class DragonBoat extends ApplicationAdapter {
 			createBarrier(i);
 		}
 
+		//Sets start position of background images
 		backImage1y = 0;
 		backImage2y = SCREEN_HEIGHT;
+
+		//Finish line variables
+        finishDrawn = false;
+        finishImage = new Texture("finishLine.jpg");
+        finishLine = new Obstacle(finishImage);
+        finishLine.width = SCREEN_WIDTH;
+        finishLine.x = 0;
+        finishLine.y = SCREEN_HEIGHT;
+		position = 1;
+
+		//Health bar variables
+		healthImage = new Texture("health.png");
 	}
+
+
 
 	@Override
 	public void render () {
 
 		frameCount += 1;
 
-		//Gameover screen rendering - may move to separate file later
-		if(gameOver == true){
+		//Game over screen rendering - may move to separate file later
+		if(gameOver){
 
 			//Sets game over background to black
 			Gdx.gl.glClearColor(0,0,0,1);
@@ -180,24 +202,27 @@ public class DragonBoat extends ApplicationAdapter {
 				batch.draw(barrierImage,barrier.x,barrier.y);
 			}
 
-			//Rendering boats if their health isn't 0
+			//Rendering boats
 			batch.draw(boat, mainBoat.x, mainBoat.y);
-
-
-			if(aiBoatOne.getHealth() > 0) {
-				batch.draw(boat, aiBoatOne.x, aiBoatOne.y);
-			}
-			else{
-				aiBoatOne.x = -200;
-				aiBoatOne.y = -200;
-			}
-				batch.draw(boat, aiBoatTwo.x, aiBoatTwo.y);
-				batch.draw(boat, aiBoatThree.x, aiBoatThree.y);
-				batch.draw(boat, aiBoatFour.x, aiBoatFour.y);
+			batch.draw(boat, aiBoatOne.x, aiBoatOne.y);
+			batch.draw(boat, aiBoatTwo.x, aiBoatTwo.y);
+			batch.draw(boat, aiBoatThree.x, aiBoatThree.y);
+			batch.draw(boat, aiBoatFour.x, aiBoatFour.y);
 
 			//draws each obstacle currently stored in obstacles array
 			for (Obstacle obstacle : obstacles) {
 				batch.draw(obstacle.getTexture(), obstacle.x, obstacle.y);
+			}
+
+			//Drawing finish line after set amount of time;
+            if(frameCount > 240){
+                batch.draw(finishImage,finishLine.x,finishLine.y);
+                finishDrawn = true;
+            }
+
+            //Draws health bar
+			for(int i=0;i<mainBoat.getHealth();i++){
+				drawHealth(i);
 			}
 
 			batch.end();
@@ -210,7 +235,7 @@ public class DragonBoat extends ApplicationAdapter {
 			aiBoatFour.speedCheck(frameCount);
 
 
-			//Movement options for the boat
+			//Movement options for the players boat
 			if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
 				mainBoat.setX(mainBoat.x + (-mainBoat.speed * Gdx.graphics.getDeltaTime()));
 			}
@@ -224,7 +249,7 @@ public class DragonBoat extends ApplicationAdapter {
 				mainBoat.setY(mainBoat.y + (-mainBoat.speed * Gdx.graphics.getDeltaTime()));
 			}
 
-			//CPU boats random movement
+			//CPU boats movement
 			aiBoatOne.move(obstacles,frameCount);
 			aiBoatTwo.move(obstacles,frameCount);
 			aiBoatThree.move(obstacles,frameCount);
@@ -244,6 +269,13 @@ public class DragonBoat extends ApplicationAdapter {
 				collisionCheck(obstacle, iter);
 
 			}
+
+			//Moves finish line down if it exists
+            if(finishDrawn){
+                finishLine.y -=200*Gdx.graphics.getDeltaTime();
+                finishCheck(finishLine);
+            }
+
 		}
 
 	}
@@ -268,7 +300,7 @@ public class DragonBoat extends ApplicationAdapter {
 		lastDropTime = TimeUtils.nanoTime();
 	}
 
-	//Checks collisions between boats and obstacles
+	//Checks collisions between boats and obstacles and removes boats from screen if their health is 0
 	private void collisionCheck(Obstacle obstacle, Iterator<Obstacle> iter){
         if (obstacle.overlaps(mainBoat)) {
 			iter.remove();
@@ -311,6 +343,34 @@ public class DragonBoat extends ApplicationAdapter {
 		}
     }
 
+    private void finishCheck(Obstacle finish){
+		if(mainBoat.overlaps(finishLine)){
+			finished = position;
+		}
+		else if(aiBoatOne.overlaps(finishLine)){
+			position += 1;
+			aiBoatOne.x = -1000;
+			aiBoatOne.y = -1000;
+		}
+		else if(aiBoatTwo.overlaps(finishLine)){
+			position += 1;
+			aiBoatTwo.x = -1000;
+			aiBoatTwo.y = -1000;
+		}
+		else if(aiBoatThree.overlaps(finishLine)){
+			position += 1;
+			aiBoatThree.x = -1000;
+			aiBoatThree.y = -1000;
+		}
+		else if(aiBoatFour.overlaps(finishLine)){
+			position += 1;
+			aiBoatFour.x = -1000;
+			aiBoatFour.y = -1000;
+		}
+
+
+	}
+
     private void createBarrier(int count){
 		Rectangle barrier = new Rectangle();
 		barrier.x = (SCREEN_WIDTH/5)*count;
@@ -318,6 +378,10 @@ public class DragonBoat extends ApplicationAdapter {
 		barrier.width = 1;
 		barrier.height = SCREEN_HEIGHT;
 		barriers.add(barrier);
+	}
+
+	private void drawHealth(int num){
+		batch.draw(healthImage,(num*16)+num,SCREEN_HEIGHT-32);
 	}
 
 }
