@@ -44,16 +44,18 @@ public class DragonBoat extends ApplicationAdapter {
 	//Game over for when health reaches 0
 	private boolean gameOver = false;
 
-	//Screen variables
-	int SCREEN_WIDTH;
-	int SCREEN_HEIGHT;
+	//Setting Screen width and height
+	int SCREEN_WIDTH = 1280;
+	int SCREEN_HEIGHT = 720;
 
-	//Boats
-	private Boat mainBoat;
-	private Boat aiBoatOne;
-	private Boat aiBoatTwo;
-	private Boat aiBoatThree;
-	private Boat aiBoatFour;
+	//Creating boat as rectangle
+	private Boat mainBoat = new PlayerBoat(10,200, 1 , 10, 10, 64, 128,768,512, (SCREEN_WIDTH/2)-32, 0, SCREEN_HEIGHT);;
+	
+	//Creating CPU boats
+	private Boat aiBoatOne = new CPUBoat(2, 200, 1,10, 10, 64, 128,256,0, 96, 0);
+	private Boat aiBoatTwo = new CPUBoat(2, 200, 1, 10, 10, 64, 128,512,256, 352, 0);
+	private Boat aiBoatThree = new CPUBoat(2, 200, 1,  10, 10, 64, 128,1024,768, 864, 0);
+	private Boat aiBoatFour = new CPUBoat(2, 200, 1,  10, 10, 64, 128,1280,1024, 1120, 0);
 
 	//Used to control CPU boat movement
 	private int frameCount;
@@ -75,10 +77,6 @@ public class DragonBoat extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
-		//Setting Screen width and height
-		SCREEN_WIDTH = 1280;
-		SCREEN_HEIGHT = 720;
-
         //Used to keep track of total number of frames
 		frameCount = 0;
 
@@ -90,6 +88,16 @@ public class DragonBoat extends ApplicationAdapter {
 
 		//Boat images
 		boat = new Texture("boat.png");
+
+		//Reset boats
+		mainBoat.reset(10);
+		aiBoatOne.reset(5);
+		aiBoatTwo.reset(5);
+		aiBoatThree.reset(5);
+		aiBoatFour.reset(5);
+
+		//Reset Position
+		position = 0;
 
 		//Obstacle Images
 		obstacleImageA = new Texture("obstacleA.jpg");
@@ -106,29 +114,6 @@ public class DragonBoat extends ApplicationAdapter {
 
 		//barrier image
 		barrierImage = new Texture("barrier.jpg");
-
-		//Creating boat as rectangle
-		mainBoat = new Boat(10,200, 1 , 10,10, 64, 128,768,512);
-		mainBoat.x = (SCREEN_WIDTH/2)-32;
-		mainBoat.y = 0;
-
-		//Creating CPU boats
-		aiBoatOne = new Boat(2, 200, 1,10, 10, 64, 128,256,0);
-		aiBoatOne.x = 96;
-		aiBoatOne.y = 0;
-
-		aiBoatTwo = new Boat(2, 200, 1, 10, 10, 64, 128,512,256);
-		aiBoatTwo.x = 352;
-		aiBoatTwo.y = 0;
-
-		aiBoatThree = new Boat(2, 200, 1,  10, 10, 64, 128,1024,768);
-		aiBoatThree.x = 864;
-		aiBoatThree.y = 0;
-
-		aiBoatFour = new Boat(2, 200, 1,  10, 10, 64, 128,1280,1024);
-		aiBoatFour.x = 1120;
-		aiBoatFour.y = 0;
-
 
 		//Creates obstacle array and spawn the first obstacle
 		obstacles = new Array<Obstacle>();
@@ -155,8 +140,6 @@ public class DragonBoat extends ApplicationAdapter {
 		//Health bar variables
 		healthImage = new Texture("health.png");
 	}
-
-
 
 	@Override
 	public void render () {
@@ -232,20 +215,7 @@ public class DragonBoat extends ApplicationAdapter {
 			aiBoatThree.speedCheck(frameCount);
 			aiBoatFour.speedCheck(frameCount);
 
-
-			//Movement options for the players boat
-			if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
-				mainBoat.setX(mainBoat.x + (-mainBoat.speed * mainBoat.acceleration * Gdx.graphics.getDeltaTime()));
-			}
-			if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
-				mainBoat.setX(mainBoat.x + (mainBoat.speed * mainBoat.acceleration * Gdx.graphics.getDeltaTime()));
-			}
-			if (Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) {
-				mainBoat.setY(mainBoat.y + (mainBoat.speed * mainBoat.acceleration * Gdx.graphics.getDeltaTime()));
-			}
-			if (Gdx.input.isKeyPressed(Input.Keys.DOWN) || Gdx.input.isKeyPressed(Input.Keys.S)) {
-				mainBoat.setY(mainBoat.y + (-mainBoat.speed * mainBoat.acceleration * Gdx.graphics.getDeltaTime()));
-			}
+			mainBoat.move(obstacles,frameCount);
 
 			//CPU boats movement
 			aiBoatOne.move(obstacles,frameCount);
@@ -307,38 +277,10 @@ public class DragonBoat extends ApplicationAdapter {
 				gameOver = true;
 			}
 		}
-        else if(obstacle.overlaps(aiBoatOne)){
-        	iter.remove();
-        	aiBoatOne.reduceHealth(1);
-        	if(aiBoatOne.getHealth() == 0){
-        		aiBoatOne.x = -200;
-        		aiBoatOne.y = -200;
-			}
-		}
-		else if(obstacle.overlaps(aiBoatTwo)){
-			iter.remove();
-			aiBoatTwo.reduceHealth(1);
-			if(aiBoatTwo.getHealth() == 0){
-				aiBoatTwo.x = -200;
-				aiBoatTwo.y = -200;
-			}
-		}
-		else if(obstacle.overlaps(aiBoatThree)){
-			iter.remove();
-			aiBoatThree.reduceHealth(1);
-			if(aiBoatThree.getHealth() == 0){
-				aiBoatThree.x = -200;
-				aiBoatThree.y = -200;
-			}
-		}
-		else if(obstacle.overlaps(aiBoatFour)){
-			iter.remove();
-			aiBoatFour.reduceHealth(1);
-			if(aiBoatFour.getHealth() == 0){
-				aiBoatFour.x = -200;
-				aiBoatFour.y = -200;
-			}
-		}
+		aiBoatOne.collisionCheck(obstacle, iter);
+		aiBoatTwo.collisionCheck(obstacle, iter);
+		aiBoatThree.collisionCheck(obstacle, iter);
+		aiBoatFour.collisionCheck(obstacle, iter);
     }
 
     private void finishCheck(Obstacle finish){
@@ -346,28 +288,10 @@ public class DragonBoat extends ApplicationAdapter {
 			finished = position;
 			difficulty += 1;
 		}
-		else if(aiBoatOne.overlaps(finishLine)){
-			position += 1;
-			aiBoatOne.x = -1000;
-			aiBoatOne.y = -1000;
-		}
-		else if(aiBoatTwo.overlaps(finishLine)){
-			position += 1;
-			aiBoatTwo.x = -1000;
-			aiBoatTwo.y = -1000;
-		}
-		else if(aiBoatThree.overlaps(finishLine)){
-			position += 1;
-			aiBoatThree.x = -1000;
-			aiBoatThree.y = -1000;
-		}
-		else if(aiBoatFour.overlaps(finishLine)){
-			position += 1;
-			aiBoatFour.x = -1000;
-			aiBoatFour.y = -1000;
-		}
-
-
+		position += aiBoatOne.finishCheck(finishLine);
+		position += aiBoatTwo.finishCheck(finishLine);
+		position += aiBoatThree.finishCheck(finishLine);
+		position += aiBoatFour.finishCheck(finishLine);
 	}
 
     private void createBarrier(int count){
@@ -432,13 +356,6 @@ public class DragonBoat extends ApplicationAdapter {
 		batch.begin();
 		font.draw(batch,"Congratulations you finished the race in position: " + finished ,(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
 		batch.end();
-
-		//Allows pressing of space to continue game
-		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-			finished = -1;
-			leg += 1;
-			create();
-		}
 	}
 
 }
