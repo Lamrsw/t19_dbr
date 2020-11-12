@@ -19,9 +19,12 @@ public class Boat extends Rectangle {
     Integer startY;
     float moveDistancey;
     int direction =1;
+    float startAcceleration;
+    float startSpeed;
+    Integer startHealth;
 
     //Used for initialising class
-    Boat(Integer health, float speed, Integer acceleration, Integer maneuverability, float penaltyTime,Integer width,Integer height, Integer maxX, Integer minX, Integer x, Integer y){
+    Boat(Integer health, float speed, float acceleration, Integer maneuverability, float penaltyTime,Integer width,Integer height, Integer maxX, Integer minX, Integer x, Integer y){
         this.width = width;
         this.height = height;
         this.health = health;
@@ -35,7 +38,9 @@ public class Boat extends Rectangle {
         this.startY = y;
         this.x = x;
         this.y = y;
-        
+        this.startSpeed = speed;
+        this.startAcceleration = acceleration;
+        this.startHealth = health;
     }
 
     //Move function which will overriden by the children
@@ -57,10 +62,13 @@ public class Boat extends Rectangle {
 
     public Integer getHealth(){ return health;}
 
-    public void reset(Integer health){
+    //Resets variables that can change to their original
+    public void reset(){
         this.x = this.startX;
         this.y = this.startY;
-        this.health = health;
+        this.health =  startHealth;
+        this.speed = startSpeed;
+        this.acceleration = startAcceleration;
     }
 
     public void setHealth(Integer amount){ health = amount;}

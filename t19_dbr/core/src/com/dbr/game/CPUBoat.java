@@ -20,7 +20,7 @@ public class CPUBoat extends Boat{
             if (frames % 20 == 0) {
                 moveDistancey = random(-10, 10);
             }
-            if (y + (speed * acceleration * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)) > 1024) {
+            if (y + (speed * acceleration * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)) > 896) {
                 moveDistancey = random(-10, 0);
             } else if (y + (speed * acceleration * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)) < 0) {
                 moveDistancey = random(0, 10);

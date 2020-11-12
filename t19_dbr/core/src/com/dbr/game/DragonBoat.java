@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 import static com.badlogic.gdx.math.MathUtils.random;
@@ -52,10 +53,10 @@ public class DragonBoat extends ApplicationAdapter {
 	private Boat mainBoat = new PlayerBoat(10,200, 1 , 10, 10, 64, 128,768,512, (SCREEN_WIDTH/2)-32, 0, SCREEN_HEIGHT);;
 	
 	//Creating CPU boats
-	private Boat aiBoatOne = new CPUBoat(2, 200, 1,10, 10, 64, 128,256,0, 96, 0);
-	private Boat aiBoatTwo = new CPUBoat(2, 200, 1, 10, 10, 64, 128,512,256, 352, 0);
-	private Boat aiBoatThree = new CPUBoat(2, 200, 1,  10, 10, 64, 128,1024,768, 864, 0);
-	private Boat aiBoatFour = new CPUBoat(2, 200, 1,  10, 10, 64, 128,1280,1024, 1120, 0);
+	private Boat aiBoatOne = new CPUBoat(5, 100, 2,10, 10, 64, 128,256,0, 96, 0);
+	private Boat aiBoatTwo = new CPUBoat(2, 300, 1, 10, 10, 64, 128,512,256, 352, 0);
+	private Boat aiBoatThree = new CPUBoat(3, 250, 1,  10, 10, 64, 128,1024,768, 864, 0);
+	private Boat aiBoatFour = new CPUBoat(8, 150, 1,  10, 10, 64, 128,1280,1024, 1120, 0);
 
 	//Used to control CPU boat movement
 	private int frameCount;
@@ -90,19 +91,19 @@ public class DragonBoat extends ApplicationAdapter {
 		boat = new Texture("boat.png");
 
 		//Reset boats
-		mainBoat.reset(10);
-		aiBoatOne.reset(5);
-		aiBoatTwo.reset(5);
-		aiBoatThree.reset(5);
-		aiBoatFour.reset(5);
+		mainBoat.reset();
+		aiBoatOne.reset();
+		aiBoatTwo.reset();
+		aiBoatThree.reset();
+		aiBoatFour.reset();
 
 		//Reset Position
 		position = 0;
 
 		//Obstacle Images
-		obstacleImageA = new Texture("obstacleA.jpg");
-		obstacleImageB = new Texture("obstacleB.jpg");
-		obstacleImageC = new Texture("obstacleC.jpg");
+		obstacleImageA = new Texture("obstacleA.png");
+		obstacleImageB = new Texture("obstacleB.png");
+		obstacleImageC = new Texture("obstacleC.png");
 		obstacleImage = new Array<Texture>();
 		obstacleImage.add(obstacleImageA);
 		obstacleImage.add(obstacleImageB);
@@ -151,7 +152,7 @@ public class DragonBoat extends ApplicationAdapter {
 			gameOverScreen();
 		}
 
-		else if(finished != -1 && leg == 3){
+		else if(finished != -1 && leg == 4){
 			endScreen();
 		}
 
@@ -218,10 +219,9 @@ public class DragonBoat extends ApplicationAdapter {
 			mainBoat.move(obstacles,frameCount);
 
 			//CPU boats movement
-			aiBoatOne.move(obstacles,frameCount);
-			aiBoatTwo.move(obstacles,frameCount);
-			aiBoatThree.move(obstacles,frameCount);
-			aiBoatFour.move(obstacles,frameCount);
+			for (Boat boat1 : Arrays.asList(aiBoatOne, aiBoatTwo, aiBoatThree, aiBoatFour)) {
+				boat1.move(obstacles,frameCount);
+			}
 
 
 			//Spawns in obstacle after set amount of time
@@ -241,7 +241,7 @@ public class DragonBoat extends ApplicationAdapter {
 			//Moves finish line down if it exists
             if(finishDrawn){
                 finishLine.y -=200*Gdx.graphics.getDeltaTime();
-                finishCheck(finishLine);
+                finishCheck();
             }
 
 		}
@@ -283,7 +283,9 @@ public class DragonBoat extends ApplicationAdapter {
 		aiBoatFour.collisionCheck(obstacle, iter);
     }
 
-    private void finishCheck(Obstacle finish){
+    //Checks for the boats crossing the finish line
+    private void finishCheck(){
+
 		if(mainBoat.overlaps(finishLine) && finished == -1){
 			finished = position;
 			difficulty += 1;
@@ -294,6 +296,8 @@ public class DragonBoat extends ApplicationAdapter {
 		position += aiBoatFour.finishCheck(finishLine);
 	}
 
+
+	//Draws the barriers between lanes at regular intervals
     private void createBarrier(int count){
 		Rectangle barrier = new Rectangle();
 		barrier.x = (SCREEN_WIDTH/5)*count;
@@ -303,10 +307,12 @@ public class DragonBoat extends ApplicationAdapter {
 		barriers.add(barrier);
 	}
 
+	//Draws the health bar
 	private void drawHealth(int num){
 		batch.draw(healthImage,(num*16)+num,SCREEN_HEIGHT-32);
 	}
 
+	//Draws game over screen
 	private void gameOverScreen(){
 		//Sets game over background to black
 		Gdx.gl.glClearColor(0,0,0,1);
@@ -334,7 +340,12 @@ public class DragonBoat extends ApplicationAdapter {
 		//Draws game over text on screen
 		batch.begin();
 		font.draw(batch,"You finished leg " + leg + " in position: " + finished ,(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
-		font.draw(batch,"Press space to continue.",SCREEN_WIDTH/2,SCREEN_HEIGHT/2-20);
+		if(leg == 3) {
+			font.draw(batch, "Press space to continue to the final.", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20);
+		}
+		else{
+			font.draw(batch, "Press space to continue.", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20);
+		}
 		batch.end();
 
 		//Allows pressing of space to continue game
