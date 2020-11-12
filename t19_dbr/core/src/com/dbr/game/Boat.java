@@ -1,73 +1,55 @@
 package com.dbr.game;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Iterator;
 
-import static com.badlogic.gdx.math.MathUtils.random;
-
 public class Boat extends Rectangle {
     Integer health;
     float speed;
-    Integer acceleration;
+    float acceleration;
     Integer maneuverability;
     String colour;
     float penaltyTime;
     Integer stamina;
     Integer maxX;
     Integer minX;
+    Integer startX;
+    Integer startY;
     float moveDistancey;
     int direction =1;
 
     //Used for initialising class
-    Boat(Integer health, float speed, Integer acceleration, Integer maneuverability, String colour, float penaltyTime, Integer stamina,Integer width,Integer height, Integer maxX, Integer minX){
+    Boat(Integer health, float speed, Integer acceleration, Integer maneuverability, float penaltyTime,Integer width,Integer height, Integer maxX, Integer minX, Integer x, Integer y){
         this.width = width;
         this.height = height;
         this.health = health;
         this.speed = speed;
         this.acceleration = acceleration;
         this.maneuverability = maneuverability;
-        this.colour = colour;
         this.penaltyTime = penaltyTime;
-        this.stamina = stamina;
         this.maxX = maxX;
         this.minX = minX;
-
-
+        this.startX = x;
+        this.startY = y;
+        this.x = x;
+        this.y = y;
+        
     }
 
-    public void move(Array<Obstacle> obstacles, int frames){
+    //Move function which will overriden by the children
+    protected void move(Array<Obstacle> obstacles, int frameCount){};
 
-        //Controls boats y movement which is random and can change every 10 frames
-        if (frames%20 == 0) {
-            moveDistancey = random(-10,10);
-        }
-        if(this.y + (this.speed * Gdx.graphics.getDeltaTime() * (moveDistancey/10)) > 1024 ){
-            moveDistancey = random(-10,0);
-        }
-        else if(this.y + (this.speed * Gdx.graphics.getDeltaTime() * (moveDistancey/10)) < 0){
-            moveDistancey = random(0, 10);
-        }
-        else {
-            this.setY(this.y + (this.speed * Gdx.graphics.getDeltaTime() * (moveDistancey / 10)));
-        }
+    //FinishCheck function checks if boat overlaps with finish line
+    protected int finishCheck(Obstacle finish){
+        return 0;
+    };
 
-        //Controls boats x movement, tries to avoid obstacles without leaving its lane
-        if(this.x+64 + (this.speed * Gdx.graphics.getDeltaTime()) >= this.maxX && direction == 1){
-            this.direction = -1;
-        }
-        else if(this.x -(this.speed * Gdx.graphics.getDeltaTime()) <= this.minX && direction == -1){
-            this.direction = 1;
-        }
-        for (Iterator<Obstacle> iter = obstacles.iterator(); iter.hasNext(); ) {
-            Obstacle obstacle = iter.next();
-            if(obstacle.getY()-this.getY() < 200 && obstacle.getX()-this.getX()<64 && obstacle.getX() - this.getX() > -64 ) {
+    protected Iterator<Obstacle> collisionCheck(Obstacle obstacle, Iterator<Obstacle> iter){
 
-                this.setX(this.x + ((this.speed * Gdx.graphics.getDeltaTime()) * direction));
-            }
-        }
+        return iter;
+
     }
 
     //Health functions
@@ -75,17 +57,16 @@ public class Boat extends Rectangle {
 
     public Integer getHealth(){ return health;}
 
+    public void reset(Integer health){
+        this.x = this.startX;
+        this.y = this.startY;
+        this.health = health;
+    }
+
     public void setHealth(Integer amount){ health = amount;}
 
-    //Stamina functions
-    public void reduceStamina(Integer amount){ stamina -= amount;}
-
-    public Integer getStamina(){ return stamina; }
-
-    public void setStamina(Integer amount){stamina = amount;}
-
     //Acceleration functions
-    public Integer getAcceleration(){ return acceleration;}
+    public float getAcceleration(){ return acceleration;}
 
     public void setAcceleration(Integer amount){acceleration = amount;}
 
@@ -93,8 +74,13 @@ public class Boat extends Rectangle {
     public String getColour(){return colour;}
 
     public void speedCheck(int framecount){
-        if(this.speed >100 && framecount % 60 == 0){
+        //Decreases boats speed every 60 frames
+        if(speed >100 && framecount % 60 == 0){
             speed -=1;
+        }
+        //Decreases boats acceleration every 240 frames
+        if(acceleration > 0.5 && framecount %240 == 0){
+            acceleration -= 0.1;
         }
     }
 }
