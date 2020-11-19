@@ -37,7 +37,7 @@ We assigned roles and responsibilities to deliverables. This was formalised both
 ### 12/11/2020
 Added assessment criteria (red) to guide the deliverable, a short introduction, and identification of project constraints. See a snapshot of the document [here](https://github.com/Lamrsw/t19_dbr/blob/website-dougie/sys_plan.png).
 
-## 19/11/2020
+### 19/11/2020
 Rewrote large parts of the document, keeping the main content the same, but rewording for clarity and to keep the deliverable within the page count. This is the final version, that can be found [here](https://lamrsw.github.io/t19_dbr/Plan1.pdf).
 
 
