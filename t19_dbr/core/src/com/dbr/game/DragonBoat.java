@@ -93,11 +93,17 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Used to keep track of if the tutorial has been seen
 	boolean tutorial = false;
-	
+
+	//Used for penalty for leaving lane
+	int penalty;
+
 	@Override
 	public void create () {
-		startTime = System.currentTimeMillis();
+		penalty = 0;
+
 		//Used to keep track of leg time
+		startTime = System.currentTimeMillis();
+
         //Used to keep track of total number of frames
 		frameCount = 0;
 
@@ -259,6 +265,10 @@ public class DragonBoat extends ApplicationAdapter {
 				boat1.move(obstacles,frameCount);
 			}
 
+			//Checking if players boat has left its lane
+			if(mainBoat.getX() > mainBoat.maxX || mainBoat.getX() < mainBoat.minX){
+				penalty += 1;
+			}
 
 			//Spawns in obstacle after set amount of time
 			if (TimeUtils.nanoTime() - lastDropTime > 1000000000-(250000000*difficulty)) {
@@ -446,9 +456,10 @@ public class DragonBoat extends ApplicationAdapter {
 		//Draws game over text on screen
 		long end = (endTime-startTime);
 		float time = end/1000F;
+		float totalTime = time+(penalty/60);
 		batch.begin();
 		font.draw(batch,"You finished leg " + leg + " in position: " + finished ,(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
-		font.draw(batch,"Time: "+time+" seconds",SCREEN_WIDTH/2,SCREEN_HEIGHT/2+20);
+		font.draw(batch,"Your time was: " +time+" seconds with a penalty of: "+penalty/30+" seconds\nFor a total time of: "+totalTime,SCREEN_WIDTH/2,SCREEN_HEIGHT/2+60);
 		if(leg == 3) {
 			font.draw(batch, "Press space to continue to the final.", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20);
 		}

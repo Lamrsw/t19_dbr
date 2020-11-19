@@ -22,14 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2334db75-d553-4a2c-9c32-0a7011688692" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/core/assets/finishLine.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/assets/skin/font-export.fnt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/assets/skin/font-subtitle-export.fnt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/assets/skin/font-title-export.fnt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/assets/skin/level-plane-ui.atlas" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/assets/skin/level-plane-ui.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/assets/skin/level-plane-ui.png" afterDir="false" />
+    <list default="true" id="2334db75-d553-4a2c-9c32-0a7011688692" name="Default Changelist" comment="Added boat select screen, tutorial screen and timing for each leg">
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -41,15 +34,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/assets/finishLine.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/assets/obstacleC.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/dbr/game/DragonBoat.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/dbr/game/DragonBoat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/dbr/game/Timer.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/DragonBoat.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/DragonBoat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/Timer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/finishLine.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/obstacleC.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,6 +127,14 @@
       <option name="presentableId" value="Default" />
       <updated>1603895573738</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added boat select screen, tutorial screen and timing for each leg">
+      <created>1605799947508</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605799947508</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -156,33 +151,34 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Added boat select screen, tutorial screen and timing for each leg" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added boat select screen, tutorial screen and timing for each leg" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603903249912">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1603903249912" />
-    <state width="1877" height="258" key="GridCell.Tab.0.bottom" timestamp="1605799864384">
+    <state width="1877" height="258" key="GridCell.Tab.0.bottom" timestamp="1605801282047">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283912" />
-    <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605799864384" />
-    <state width="1877" height="258" key="GridCell.Tab.0.center" timestamp="1605799864384">
+    <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605801282047" />
+    <state width="1877" height="258" key="GridCell.Tab.0.center" timestamp="1605801282047">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283912" />
-    <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605799864384" />
-    <state width="1877" height="258" key="GridCell.Tab.0.left" timestamp="1605799864384">
+    <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605801282047" />
+    <state width="1877" height="258" key="GridCell.Tab.0.left" timestamp="1605801282047">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283911" />
-    <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605799864384" />
-    <state width="1877" height="258" key="GridCell.Tab.0.right" timestamp="1605799864384">
+    <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605801282047" />
+    <state width="1877" height="258" key="GridCell.Tab.0.right" timestamp="1605801282047">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283912" />
-    <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605799864384" />
+    <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605801282047" />
     <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1605193925257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
