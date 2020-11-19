@@ -28,7 +28,7 @@ Download the latest version of the game [here](https://github.com/Lamrsw/t19_dbr
 ### 15/10/20 (second week) 
 The plan [document](https://github.com/Lamrsw/t19_dbr/blob/website-dougie/stakeholders.png) was created, and the stakeholders identified to inform the Q&A document we made for the team-customer meeting that would happen on the 19th.
 
-The Q&A document can be found [here](https://github.com/Lamrsw/t19_dbr/blob/website-dougie/Questions%20for%20Team-Customer%20meeting.pdf)
+The Q&A document can be found [here](https://github.com/Lamrsw/t19_dbr/blob/website-dougie/Questions%20for%20Team-Customer%20meeting.pdf).
 
 ### 29/10/20 (fourth week)
 Relevant hardware and software requirements updated with information gained from the Q&A.
