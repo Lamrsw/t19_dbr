@@ -8,8 +8,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -49,7 +56,7 @@ public class DragonBoat extends ApplicationAdapter {
 	int SCREEN_WIDTH = 1280;
 	int SCREEN_HEIGHT = 720;
 
-	//Creating boat as rectangle
+	//Creating players boat
 	private Boat mainBoat = new PlayerBoat(10,200, 1 , 10, 10, 64, 128,768,512, (SCREEN_WIDTH/2)-32, 0, SCREEN_HEIGHT);;
 	
 	//Creating CPU boats
@@ -75,9 +82,22 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Leg number
 	int leg = 1;
+
+	//Used for boat selection screen
+	boolean selectBoat = false;
+	private Stage selectStage;
+
+	//Used for timing leg length
+	long startTime = 0;
+	long endTime;
+
+	//Used to keep track of if the tutorial has been seen
+	boolean tutorial = false;
 	
 	@Override
 	public void create () {
+		startTime = System.currentTimeMillis();
+		//Used to keep track of leg time
         //Used to keep track of total number of frames
 		frameCount = 0;
 
@@ -131,7 +151,7 @@ public class DragonBoat extends ApplicationAdapter {
 
 		//Finish line variables
         finishDrawn = false;
-        finishImage = new Texture("finishLine.jpg");
+        finishImage = new Texture("finishLine.png");
         finishLine = new Obstacle(finishImage);
         finishLine.width = SCREEN_WIDTH;
         finishLine.x = 0;
@@ -140,28 +160,44 @@ public class DragonBoat extends ApplicationAdapter {
 
 		//Health bar variables
 		healthImage = new Texture("health.png");
+
+		//Boat select screen
+		selectStage = new Stage(new ScreenViewport());
+		Gdx.input.setInputProcessor(selectStage);
+		//Creating select buttons
+		createButtons();
 	}
 
 	@Override
 	public void render () {
 
-		frameCount += 1;
+		if(tutorial == false){
+			tutorialScreen();
+		}
 
-		//Game over screen rendering - may move to separate file later
-		if(gameOver){
+		else if(selectBoat == false){
+			selectBoatScreen();
+		}
+
+		//Game over screen
+		else if(gameOver){
 			gameOverScreen();
 		}
 
+		//Final screen for finishing race
 		else if(finished != -1 && leg == 4){
 			endScreen();
 		}
 
+		//Screen for in between legs
 		else if(finished != -1){
 			midScreen();
 		}
 
 		//Rendering for main part of game
 		else {
+			frameCount += 1;
+
 			Gdx.gl.glClearColor(0, 0, 1, 1);
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -197,7 +233,7 @@ public class DragonBoat extends ApplicationAdapter {
 			}
 
 			//Drawing finish line after set amount of time;
-            if(frameCount > 960){
+            if(frameCount > (960)*(1+(difficulty/2))){
                 batch.draw(finishImage,finishLine.x,finishLine.y);
                 finishDrawn = true;
             }
@@ -287,6 +323,7 @@ public class DragonBoat extends ApplicationAdapter {
     private void finishCheck(){
 
 		if(mainBoat.overlaps(finishLine) && finished == -1){
+			endTime = System.currentTimeMillis();
 			finished = position;
 			difficulty += 1;
 		}
@@ -296,6 +333,75 @@ public class DragonBoat extends ApplicationAdapter {
 		position += aiBoatFour.finishCheck(finishLine);
 	}
 
+	private void createButtons(){
+		//skin used from https://github.com/czyzby/gdx-skins
+		Skin buttonSkin = new Skin(Gdx.files.internal("skin/level-plane-ui.json"));
+
+		//Top left button
+		Button buttonA = new TextButton("Select",buttonSkin);
+		buttonA.setPosition(SCREEN_WIDTH/4,SCREEN_HEIGHT/4+SCREEN_HEIGHT/2);
+		buttonA.addListener(new InputListener(){
+			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+				mainBoat.health = 10;
+				mainBoat.speed = 200;
+				mainBoat.acceleration = 1;
+				selectBoat = true;
+			}
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				return true;
+			}
+		});
+
+		//Top right button
+		Button buttonB = new TextButton("Select",buttonSkin);
+		buttonB.setPosition((SCREEN_WIDTH/4+SCREEN_WIDTH/2)-buttonB.getWidth(),SCREEN_HEIGHT/4+SCREEN_HEIGHT/2);
+		buttonB.addListener(new InputListener(){
+			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+				mainBoat.health = 5;
+				mainBoat.speed = 250;
+				mainBoat.acceleration = 1;
+				selectBoat = true;
+			}
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				return true;
+			}
+		});
+
+		//Bottom left button
+		Button buttonC = new TextButton("Select",buttonSkin);
+		buttonC.setPosition(SCREEN_WIDTH/4,SCREEN_HEIGHT/4);
+		buttonC.addListener(new InputListener(){
+			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+				mainBoat.health = 3;
+				mainBoat.speed = 200;
+				mainBoat.acceleration = 2;
+				selectBoat = true;
+			}
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				return true;
+			}
+		});
+
+		//Bottom right button
+		Button buttonD = new TextButton("Select",buttonSkin);
+		buttonD.setPosition((SCREEN_WIDTH/4+SCREEN_WIDTH/2)-buttonD.getWidth(),SCREEN_HEIGHT/4);
+		buttonD.addListener(new InputListener(){
+			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+				mainBoat.health = 7;
+				mainBoat.speed = 300;
+				mainBoat.acceleration = 1;
+				selectBoat = true;
+			}
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				return true;
+			}
+		});
+
+		selectStage.addActor(buttonA);
+		selectStage.addActor(buttonB);
+		selectStage.addActor(buttonC);
+		selectStage.addActor(buttonD);
+	}
 
 	//Draws the barriers between lanes at regular intervals
     private void createBarrier(int count){
@@ -338,8 +444,11 @@ public class DragonBoat extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		//Draws game over text on screen
+		long end = (endTime-startTime);
+		float time = end/1000F;
 		batch.begin();
 		font.draw(batch,"You finished leg " + leg + " in position: " + finished ,(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
+		font.draw(batch,"Time: "+time+" seconds",SCREEN_WIDTH/2,SCREEN_HEIGHT/2+20);
 		if(leg == 3) {
 			font.draw(batch, "Press space to continue to the final.", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20);
 		}
@@ -350,6 +459,7 @@ public class DragonBoat extends ApplicationAdapter {
 
 		//Allows pressing of space to continue game
 		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+			startTime = System.currentTimeMillis();
 			finished = -1;
 			leg += 1;
 			create();
@@ -367,6 +477,34 @@ public class DragonBoat extends ApplicationAdapter {
 		batch.begin();
 		font.draw(batch,"Congratulations you finished the race in position: " + finished ,(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
 		batch.end();
+	}
+
+	private void tutorialScreen(){
+		batch.begin();
+		font.draw(batch,"Use W A S D to move\nAvoid obstacles in the river\nLeaving your lane will cause a penalty to be added to your time\nPress space to select your boat and begin",(SCREEN_WIDTH/2)-100,SCREEN_HEIGHT/2+100);
+		batch.end();
+
+		//Allows pressing of space to continue game
+		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+			tutorial = true;
+		}
+	}
+
+	private void selectBoatScreen(){
+		//Sets game over background to black
+		Gdx.gl.glClearColor(0,0,0,1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		selectStage.act();
+		selectStage.draw();
+		batch.begin();
+		font.draw(batch,"Robustness: 10\nSpeed: 200\nAcceleration: 1",SCREEN_WIDTH/4,SCREEN_HEIGHT/4+SCREEN_HEIGHT/2+90);
+		font.draw(batch,"Robustness: 5\nSpeed: 250\nAcceleration: 1",SCREEN_WIDTH/4+SCREEN_WIDTH/2-85,SCREEN_HEIGHT/4+SCREEN_HEIGHT/2+90);
+		font.draw(batch,"Robustness: 3\nSpeed: 200\nAcceleration: 2",SCREEN_WIDTH/4,SCREEN_HEIGHT/4+90);
+		font.draw(batch,"Robustness: 7\nSpeed: 300\nAcceleration: 1",SCREEN_WIDTH/4+SCREEN_WIDTH/2-85,SCREEN_HEIGHT/4+90);
+		font.draw(batch,"Select a boat to use",SCREEN_WIDTH/2-75,SCREEN_HEIGHT/2+50);
+		batch.end();
+
 	}
 
 }
