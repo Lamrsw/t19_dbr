@@ -57,7 +57,7 @@ public class DragonBoat extends ApplicationAdapter {
 	int SCREEN_HEIGHT = 720;
 
 	//Creating players boat
-	private Boat mainBoat = new PlayerBoat(10,200, 1 , 10, 10, 64, 128,768,512, (SCREEN_WIDTH/2)-32, 0, SCREEN_HEIGHT);;
+	private Boat mainBoat = new PlayerBoat(10,200, 1 , 10, 10, 64, 128,768,512, (SCREEN_WIDTH/2)-32, 0, SCREEN_HEIGHT);
 	
 	//Creating CPU boats
 	private Boat aiBoatOne = new CPUBoat(5, 100, 2,10, 10, 64, 128,256,0, 96, 0);
@@ -96,6 +96,9 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Used for penalty for leaving lane
 	int penalty;
+
+	//Demo mode
+	boolean demo = false;
 
 	@Override
 	public void create () {
@@ -407,10 +410,24 @@ public class DragonBoat extends ApplicationAdapter {
 			}
 		});
 
+		Button buttonDemo = new TextButton("Demo", buttonSkin);
+		buttonDemo.setPosition(SCREEN_WIDTH/2-(buttonD.getWidth()/2),0);
+		buttonDemo.addListener(new InputListener(){
+			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+				demo = true;
+				mainBoat = new CPUBoat(10,200, 1 , 10, 10, 64, 128,768,512, (SCREEN_WIDTH/2)-32, 0);
+				selectBoat = true;
+			}
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				return true;
+			}
+		});
+
 		selectStage.addActor(buttonA);
 		selectStage.addActor(buttonB);
 		selectStage.addActor(buttonC);
 		selectStage.addActor(buttonD);
+		selectStage.addActor(buttonDemo);
 	}
 
 	//Draws the barriers between lanes at regular intervals
@@ -440,14 +457,23 @@ public class DragonBoat extends ApplicationAdapter {
 		font.draw(batch,"Press space to retry.",SCREEN_WIDTH/2,SCREEN_HEIGHT/2-20);
 		batch.end();
 
+
+		//Continuing if in demo mode
+		if(demo){
+			startTime = System.currentTimeMillis();
+			finished = -1;
+			leg += 1;
+			create();
+		}
+
 		//Allows pressing of space to continue game
 		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-			create();
 			gameOver = false;
+			create();
 		}
 	}
 
-	//Screen for end of 1st and second leg
+	//Screen for end of first three legs
 	private void midScreen(){
 		//Sets game over background to black
 		Gdx.gl.glClearColor(0,0,0,1);
@@ -456,7 +482,7 @@ public class DragonBoat extends ApplicationAdapter {
 		//Draws game over text on screen
 		long end = (endTime-startTime);
 		float time = end/1000F;
-		float totalTime = time+(penalty/60);
+		float totalTime = time+(penalty/30);
 		batch.begin();
 		font.draw(batch,"You finished leg " + leg + " in position: " + finished ,(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
 		font.draw(batch,"Your time was: " +time+" seconds with a penalty of: "+penalty/30+" seconds\nFor a total time of: "+totalTime,SCREEN_WIDTH/2,SCREEN_HEIGHT/2+60);
@@ -467,6 +493,14 @@ public class DragonBoat extends ApplicationAdapter {
 			font.draw(batch, "Press space to continue.", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20);
 		}
 		batch.end();
+
+		//Continuing if in demo mode
+		if(demo){
+				startTime = System.currentTimeMillis();
+				finished = -1;
+				leg += 1;
+				create();
+		}
 
 		//Allows pressing of space to continue game
 		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
