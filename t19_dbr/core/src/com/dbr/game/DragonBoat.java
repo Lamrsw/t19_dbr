@@ -57,7 +57,7 @@ public class DragonBoat extends ApplicationAdapter {
 	int SCREEN_HEIGHT = 720;
 
 	//Creating players boat
-	private Boat mainBoat = new PlayerBoat(10,200, 1 , 10, 10, 64, 128,768,512, (SCREEN_WIDTH/2)-32, 0, SCREEN_HEIGHT);;
+	private Boat mainBoat = new PlayerBoat(10,200, 1 , 10, 10, 64, 128,768,512, (SCREEN_WIDTH/2)-32, 0, SCREEN_HEIGHT);
 	
 	//Creating CPU boats
 	private Boat aiBoatOne = new CPUBoat(5, 100, 2,10, 10, 64, 128,256,0, 96, 0);
@@ -97,6 +97,9 @@ public class DragonBoat extends ApplicationAdapter {
 	//Used for penalty for leaving lane
 	int penalty;
 
+	//Demo mode
+	boolean demo = false;
+
 	@Override
 	public void create () {
 		penalty = 0;
@@ -108,6 +111,7 @@ public class DragonBoat extends ApplicationAdapter {
 		frameCount = 0;
 
 		//Creating font
+
 		font = new BitmapFont();
 		font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
@@ -258,6 +262,7 @@ public class DragonBoat extends ApplicationAdapter {
 			aiBoatThree.speedCheck(frameCount);
 			aiBoatFour.speedCheck(frameCount);
 
+			//Players boat movement
 			mainBoat.move(obstacles,frameCount);
 
 			//CPU boats movement
@@ -284,7 +289,7 @@ public class DragonBoat extends ApplicationAdapter {
 
 			}
 
-			//Moves finish line down if it exists
+			//Moves finish line down if it has been drawn
             if(finishDrawn){
                 finishLine.y -=200*Gdx.graphics.getDeltaTime();
                 finishCheck();
@@ -301,18 +306,16 @@ public class DragonBoat extends ApplicationAdapter {
 		obstacleImageA.dispose();
 		obstacleImageB.dispose();
 		obstacleImageC.dispose();
+		finishImage.dispose();
+		font.dispose();
+		backImage1.dispose();
+		backImage2.dispose();
+		healthImage.dispose();
+		selectStage.dispose();
 	}
 
-	//Spawns obstacles in at the top of the screen with a random x value
-	private void spawnObstacle(){
-		Obstacle obstacle = new Obstacle(obstacleImage.get(random(0,2)));
-		obstacle.x = random(0, SCREEN_WIDTH-64);
-		obstacle.y = SCREEN_HEIGHT;
-		obstacle.width = 64;
-		obstacle.height = 64;
-		obstacles.add(obstacle);
-		lastDropTime = TimeUtils.nanoTime();
-	}
+
+	//Collision checks
 
 	//Checks collisions between boats and obstacles and removes boats from screen if their health is 0
 	private void collisionCheck(Obstacle obstacle, Iterator<Obstacle> iter){
@@ -343,6 +346,21 @@ public class DragonBoat extends ApplicationAdapter {
 		position += aiBoatFour.finishCheck(finishLine);
 	}
 
+
+	//Entity Creation
+
+	//Spawns obstacles in at the top of the screen with a random x value
+	private void spawnObstacle(){
+		Obstacle obstacle = new Obstacle(obstacleImage.get(random(0,2)));
+		obstacle.x = random(0, SCREEN_WIDTH-64);
+		obstacle.y = SCREEN_HEIGHT;
+		obstacle.width = 64;
+		obstacle.height = 64;
+		obstacles.add(obstacle);
+		lastDropTime = TimeUtils.nanoTime();
+	}
+
+	//Boat select button creation
 	private void createButtons(){
 		//skin used from https://github.com/czyzby/gdx-skins
 		Skin buttonSkin = new Skin(Gdx.files.internal("skin/level-plane-ui.json"));
@@ -407,10 +425,25 @@ public class DragonBoat extends ApplicationAdapter {
 			}
 		});
 
+		//Demo mode button
+		Button buttonDemo = new TextButton("Demo", buttonSkin);
+		buttonDemo.setPosition(SCREEN_WIDTH/2-(buttonD.getWidth()/2),0);
+		buttonDemo.addListener(new InputListener(){
+			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+				demo = true;
+				mainBoat = new CPUBoat(10,200, 1 , 10, 10, 64, 128,768,512, (SCREEN_WIDTH/2)-32, 0);
+				selectBoat = true;
+			}
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				return true;
+			}
+		});
+
 		selectStage.addActor(buttonA);
 		selectStage.addActor(buttonB);
 		selectStage.addActor(buttonC);
 		selectStage.addActor(buttonD);
+		selectStage.addActor(buttonDemo);
 	}
 
 	//Draws the barriers between lanes at regular intervals
@@ -428,6 +461,9 @@ public class DragonBoat extends ApplicationAdapter {
 		batch.draw(healthImage,(num*16)+num,SCREEN_HEIGHT-32);
 	}
 
+
+	///Screens
+
 	//Draws game over screen
 	private void gameOverScreen(){
 		//Sets game over background to black
@@ -440,14 +476,23 @@ public class DragonBoat extends ApplicationAdapter {
 		font.draw(batch,"Press space to retry.",SCREEN_WIDTH/2,SCREEN_HEIGHT/2-20);
 		batch.end();
 
+
+		//Continuing if in demo mode
+		if(demo){
+			startTime = System.currentTimeMillis();
+			finished = -1;
+			leg += 1;
+			create();
+		}
+
 		//Allows pressing of space to continue game
 		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-			create();
 			gameOver = false;
+			create();
 		}
 	}
 
-	//Screen for end of 1st and second leg
+	//Screen for end of first three legs
 	private void midScreen(){
 		//Sets game over background to black
 		Gdx.gl.glClearColor(0,0,0,1);
@@ -455,18 +500,27 @@ public class DragonBoat extends ApplicationAdapter {
 
 		//Draws game over text on screen
 		long end = (endTime-startTime);
-		float time = end/1000F;
-		float totalTime = time+(penalty/60);
+		float time = Math.round(end/1000F);
+		float totalTime = time+(penalty/30);
 		batch.begin();
-		font.draw(batch,"You finished leg " + leg + " in position: " + finished ,(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
-		font.draw(batch,"Your time was: " +time+" seconds with a penalty of: "+penalty/30+" seconds\nFor a total time of: "+totalTime,SCREEN_WIDTH/2,SCREEN_HEIGHT/2+60);
+		font.draw(batch,"You finished leg " + leg + " in position: " + finished ,(SCREEN_WIDTH/2)-97 ,SCREEN_HEIGHT/2);
+		font.draw(batch,"Your time was: " +time+" seconds with a penalty of: "+penalty/30+" seconds",SCREEN_WIDTH/2-182,SCREEN_HEIGHT/2+60);
+		font.draw(batch,"For a total time of: "+totalTime+" seconds",SCREEN_WIDTH/2-102,SCREEN_HEIGHT/2+30);
 		if(leg == 3) {
-			font.draw(batch, "Press space to continue to the final.", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20);
+			font.draw(batch, "Press space to continue to the final.", SCREEN_WIDTH / 2-113, SCREEN_HEIGHT / 2 - 30);
 		}
 		else{
-			font.draw(batch, "Press space to continue.", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20);
+			font.draw(batch, "Press space to continue.", (SCREEN_WIDTH / 2)-77, SCREEN_HEIGHT / 2 - 30);
 		}
 		batch.end();
+
+		//Continuing if in demo mode
+		if(demo){
+				startTime = System.currentTimeMillis();
+				finished = -1;
+				leg += 1;
+				create();
+		}
 
 		//Allows pressing of space to continue game
 		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
@@ -486,13 +540,16 @@ public class DragonBoat extends ApplicationAdapter {
 
 		//Draws game over text on screen
 		batch.begin();
-		font.draw(batch,"Congratulations you finished the race in position: " + finished ,(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
+		font.draw(batch,"Congratulations you finished the race in position: " + finished ,(SCREEN_WIDTH/2)-161 ,SCREEN_HEIGHT/2);
 		batch.end();
 	}
 
 	private void tutorialScreen(){
 		batch.begin();
-		font.draw(batch,"Use W A S D to move\nAvoid obstacles in the river\nLeaving your lane will cause a penalty to be added to your time\nPress space to select your boat and begin",(SCREEN_WIDTH/2)-100,SCREEN_HEIGHT/2+100);
+		font.draw(batch,"Use W A S D to move",(SCREEN_WIDTH/2)-74,SCREEN_HEIGHT/2+100);
+		font.draw(batch,"Avoid obstacles in the river",(SCREEN_WIDTH/2)-82,SCREEN_HEIGHT/2+70);
+		font.draw(batch,"Leaving your lane will cause a penalty to be added to your time",(SCREEN_WIDTH/2)-200,SCREEN_HEIGHT/2+40);
+		font.draw(batch,"Press space to select your boat and begin",(SCREEN_WIDTH/2)-135,SCREEN_HEIGHT/2+10);
 		batch.end();
 
 		//Allows pressing of space to continue game

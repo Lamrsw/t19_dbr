@@ -9,5 +9,6 @@ public class Obstacle extends Rectangle{
         this.texture = texture;
     }
 
+    //Allows each obstacle to have a different texture
     public Texture getTexture(){ return texture;}
 }
