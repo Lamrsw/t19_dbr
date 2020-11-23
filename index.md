@@ -38,4 +38,4 @@ We assigned roles and responsibilities to deliverables. This was formalised both
 Added assessment criteria (red) to guide the deliverable, a short introduction, and identification of project constraints. See a snapshot of the document [here](https://raw.githubusercontent.com/Lamrsw/t19_dbr/website/sys_plan.png).
 
 ### 19/11/2020
-Rewrote large parts of the document, keeping the main content the same, but rewording for clarity and to keep the deliverable within the page count. This is the final version, that can be found [here](https://lamrsw.github.io/t19_dbr/Plan1.pdf).
+Rewrote large parts of the document, keeping the main content the same, but rewording for clarity and to keep the deliverable within the page count. This is the final version, and can be found [here](https://lamrsw.github.io/t19_dbr/Plan1.pdf).
