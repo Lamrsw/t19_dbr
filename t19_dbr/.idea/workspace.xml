@@ -22,23 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2334db75-d553-4a2c-9c32-0a7011688692" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="2334db75-d553-4a2c-9c32-0a7011688692" name="Default Changelist" comment="Added boat select screen, tutorial screen and timing for each leg">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/dbr/game/Boat.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/dbr/game/Boat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/dbr/game/DragonBoat.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/dbr/game/DragonBoat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/Boat.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/Boat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/DragonBoat.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/DragonBoat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/Obstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/Obstacle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +116,14 @@
       <option name="presentableId" value="Default" />
       <updated>1603895573738</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added boat select screen, tutorial screen and timing for each leg">
+      <created>1605799947508</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605799947508</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -145,57 +140,66 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Added boat select screen, tutorial screen and timing for each leg" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added boat select screen, tutorial screen and timing for each leg" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603903249912">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1603903249912" />
-    <state width="1877" height="347" key="GridCell.Tab.0.bottom" timestamp="1604840930374">
+    <state width="1860" height="258" key="GridCell.Tab.0.bottom" timestamp="1606138551946">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283912" />
-    <state width="1877" height="347" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1604840930374" />
-    <state width="1877" height="347" key="GridCell.Tab.0.center" timestamp="1604840930373">
+    <state width="1860" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606138551946" />
+    <state width="1860" height="258" key="GridCell.Tab.0.center" timestamp="1606138551945">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283912" />
-    <state width="1877" height="347" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1604840930373" />
-    <state width="1877" height="347" key="GridCell.Tab.0.left" timestamp="1604840930373">
+    <state width="1860" height="258" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606138551945" />
+    <state width="1860" height="258" key="GridCell.Tab.0.left" timestamp="1606138551945">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283911" />
-    <state width="1877" height="347" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1604840930373" />
-    <state width="1877" height="347" key="GridCell.Tab.0.right" timestamp="1604840930374">
+    <state width="1860" height="258" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606138551945" />
+    <state width="1860" height="258" key="GridCell.Tab.0.right" timestamp="1606138551946">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283912" />
-    <state width="1877" height="347" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1604840930374" />
-    <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1604840930374">
+    <state width="1860" height="258" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606138551946" />
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1605193925257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1604840930374" />
-    <state width="1877" height="347" key="GridCell.Tab.1.center" timestamp="1604840930374">
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605193925257" />
+    <state width="1877" height="347" key="GridCell.Tab.1.center" timestamp="1605193925257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1604840930374" />
-    <state width="1877" height="347" key="GridCell.Tab.1.left" timestamp="1604840930374">
+    <state width="1877" height="347" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605193925257" />
+    <state width="1877" height="347" key="GridCell.Tab.1.left" timestamp="1605193925257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1604840930374" />
-    <state width="1877" height="347" key="GridCell.Tab.1.right" timestamp="1604840930374">
+    <state width="1877" height="347" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605193925257" />
+    <state width="1877" height="347" key="GridCell.Tab.1.right" timestamp="1605193925257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1604840930374" />
+    <state width="1877" height="347" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605193925257" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605799825318">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605799825318" />
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605790899913">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1605790899913" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1603903291362">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1603903291362" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604672469331">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606138350446">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1297" y="-36" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591214474" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1604672469331" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606138350446" />
   </component>
 </project>
