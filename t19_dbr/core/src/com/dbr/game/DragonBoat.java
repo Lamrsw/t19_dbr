@@ -262,6 +262,7 @@ public class DragonBoat extends ApplicationAdapter {
 			aiBoatThree.speedCheck(frameCount);
 			aiBoatFour.speedCheck(frameCount);
 
+			//Players boat movement
 			mainBoat.move(obstacles,frameCount);
 
 			//CPU boats movement
@@ -288,7 +289,7 @@ public class DragonBoat extends ApplicationAdapter {
 
 			}
 
-			//Moves finish line down if it exists
+			//Moves finish line down if it has been drawn
             if(finishDrawn){
                 finishLine.y -=200*Gdx.graphics.getDeltaTime();
                 finishCheck();
@@ -305,18 +306,16 @@ public class DragonBoat extends ApplicationAdapter {
 		obstacleImageA.dispose();
 		obstacleImageB.dispose();
 		obstacleImageC.dispose();
+		finishImage.dispose();
+		font.dispose();
+		backImage1.dispose();
+		backImage2.dispose();
+		healthImage.dispose();
+		selectStage.dispose();
 	}
 
-	//Spawns obstacles in at the top of the screen with a random x value
-	private void spawnObstacle(){
-		Obstacle obstacle = new Obstacle(obstacleImage.get(random(0,2)));
-		obstacle.x = random(0, SCREEN_WIDTH-64);
-		obstacle.y = SCREEN_HEIGHT;
-		obstacle.width = 64;
-		obstacle.height = 64;
-		obstacles.add(obstacle);
-		lastDropTime = TimeUtils.nanoTime();
-	}
+
+	//Collision checks
 
 	//Checks collisions between boats and obstacles and removes boats from screen if their health is 0
 	private void collisionCheck(Obstacle obstacle, Iterator<Obstacle> iter){
@@ -347,6 +346,21 @@ public class DragonBoat extends ApplicationAdapter {
 		position += aiBoatFour.finishCheck(finishLine);
 	}
 
+
+	//Entity Creation
+
+	//Spawns obstacles in at the top of the screen with a random x value
+	private void spawnObstacle(){
+		Obstacle obstacle = new Obstacle(obstacleImage.get(random(0,2)));
+		obstacle.x = random(0, SCREEN_WIDTH-64);
+		obstacle.y = SCREEN_HEIGHT;
+		obstacle.width = 64;
+		obstacle.height = 64;
+		obstacles.add(obstacle);
+		lastDropTime = TimeUtils.nanoTime();
+	}
+
+	//Boat select button creation
 	private void createButtons(){
 		//skin used from https://github.com/czyzby/gdx-skins
 		Skin buttonSkin = new Skin(Gdx.files.internal("skin/level-plane-ui.json"));
@@ -411,6 +425,7 @@ public class DragonBoat extends ApplicationAdapter {
 			}
 		});
 
+		//Demo mode button
 		Button buttonDemo = new TextButton("Demo", buttonSkin);
 		buttonDemo.setPosition(SCREEN_WIDTH/2-(buttonD.getWidth()/2),0);
 		buttonDemo.addListener(new InputListener(){
@@ -445,6 +460,9 @@ public class DragonBoat extends ApplicationAdapter {
 	private void drawHealth(int num){
 		batch.draw(healthImage,(num*16)+num,SCREEN_HEIGHT-32);
 	}
+
+
+	///Screens
 
 	//Draws game over screen
 	private void gameOverScreen(){
