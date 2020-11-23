@@ -23,9 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2334db75-d553-4a2c-9c32-0a7011688692" name="Default Changelist" comment="Added boat select screen, tutorial screen and timing for each leg">
-      <change afterPath="$PROJECT_DIR$/core/assets/mainBoat.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/DragonBoat.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/DragonBoat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,26 +147,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1603903249912" />
-    <state width="1860" height="258" key="GridCell.Tab.0.bottom" timestamp="1606138551946">
+    <state width="1877" height="258" key="GridCell.Tab.0.bottom" timestamp="1606164713806">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283912" />
-    <state width="1860" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606138551946" />
-    <state width="1860" height="258" key="GridCell.Tab.0.center" timestamp="1606138551945">
+    <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606164713806" />
+    <state width="1877" height="258" key="GridCell.Tab.0.center" timestamp="1606164713806">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283912" />
-    <state width="1860" height="258" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606138551945" />
-    <state width="1860" height="258" key="GridCell.Tab.0.left" timestamp="1606138551945">
+    <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606164713806" />
+    <state width="1877" height="258" key="GridCell.Tab.0.left" timestamp="1606164713805">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283911" />
-    <state width="1860" height="258" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606138551945" />
-    <state width="1860" height="258" key="GridCell.Tab.0.right" timestamp="1606138551946">
+    <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606164713805" />
+    <state width="1877" height="258" key="GridCell.Tab.0.right" timestamp="1606164713806">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283912" />
-    <state width="1860" height="258" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606138551946" />
+    <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606164713806" />
     <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1605193925257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
