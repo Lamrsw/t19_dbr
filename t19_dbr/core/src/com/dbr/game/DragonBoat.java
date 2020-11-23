@@ -46,7 +46,7 @@ public class DragonBoat extends ApplicationAdapter {
 	private SpriteBatch batch;
 
 	//Texture variables
-	private Texture boat,obstacleImageA, obstacleImageB, obstacleImageC ,barrierImage, finishImage, healthImage;
+	private Texture boat,playerBoat,obstacleImageA, obstacleImageB, obstacleImageC ,barrierImage, finishImage, healthImage;
 	private Array<Texture> obstacleImage;
 
 	//background images
@@ -137,6 +137,7 @@ public class DragonBoat extends ApplicationAdapter {
 
 		//Boat images
 		boat = new Texture("boat.png");
+		playerBoat = new Texture("mainBoat.png");
 
 		//Reset boats
 		mainBoat.reset();
@@ -257,7 +258,7 @@ public class DragonBoat extends ApplicationAdapter {
 			}
 
 			//Rendering boats
-			batch.draw(boat, mainBoat.x, mainBoat.y);
+			batch.draw(playerBoat, mainBoat.x, mainBoat.y);
 			batch.draw(boat, aiBoatOne.x, aiBoatOne.y);
 			batch.draw(boat, aiBoatTwo.x, aiBoatTwo.y);
 			batch.draw(boat, aiBoatThree.x, aiBoatThree.y);

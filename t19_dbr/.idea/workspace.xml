@@ -23,40 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1e0f745-f6bf-4564-afaf-da6314d280d6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.5/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.5/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/assets/skin/font-export.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/core/assets/skin/font-export.fnt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/assets/skin/font-subtitle-export.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/core/assets/skin/font-subtitle-export.fnt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/assets/skin/font-title-export.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/core/assets/skin/font-title-export.fnt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/assets/skin/level-plane-ui.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/core/assets/skin/level-plane-ui.atlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/assets/skin/level-plane-ui.json" beforeDir="false" afterPath="$PROJECT_DIR$/core/assets/skin/level-plane-ui.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/tmp/jar/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/jar/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/Boat.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/Boat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/CPUBoat.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/CPUBoat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/DragonBoat.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/DragonBoat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/Obstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/Obstacle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/PlayerBoat.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/PlayerBoat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/skin/font-export.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/skin/font-export.fnt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/skin/font-subtitle-export.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/skin/font-subtitle-export.fnt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/skin/font-title-export.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/skin/font-title-export.fnt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/skin/level-plane-ui.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/skin/level-plane-ui.atlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/skin/level-plane-ui.json" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/skin/level-plane-ui.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/src/com/dbr/game/desktop/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/src/com/dbr/game/desktop/DesktopLauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +109,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2334db75-d553-4a2c-9c32-0a7011688692" name="Default Changelist" comment="" />
+      <changelist id="e1e0f745-f6bf-4564-afaf-da6314d280d6" name="Default Changelist" comment="" />
       <created>1603895573738</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -179,26 +147,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1603903249912" />
-    <state width="1860" height="258" key="GridCell.Tab.0.bottom" timestamp="1606138551946">
+    <state width="1877" height="258" key="GridCell.Tab.0.bottom" timestamp="1606164233037">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283912" />
-    <state width="1860" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606138551946" />
-    <state width="1860" height="258" key="GridCell.Tab.0.center" timestamp="1606138551945">
+    <state width="1877" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606164233037" />
+    <state width="1877" height="258" key="GridCell.Tab.0.center" timestamp="1606164233037">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283912" />
-    <state width="1860" height="258" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606138551945" />
-    <state width="1860" height="258" key="GridCell.Tab.0.left" timestamp="1606138551945">
+    <state width="1877" height="258" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606164233037" />
+    <state width="1877" height="258" key="GridCell.Tab.0.left" timestamp="1606164233036">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283911" />
-    <state width="1860" height="258" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606138551945" />
-    <state width="1860" height="258" key="GridCell.Tab.0.right" timestamp="1606138551946">
+    <state width="1877" height="258" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606164233036" />
+    <state width="1877" height="258" key="GridCell.Tab.0.right" timestamp="1606164233037">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-261.1920.1040@-1920.-261.1920.1040" timestamp="1604591283912" />
-    <state width="1860" height="258" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606138551946" />
+    <state width="1877" height="258" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-261.1920.1040@0.0.1920.1040" timestamp="1606164233037" />
     <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1605193925257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
