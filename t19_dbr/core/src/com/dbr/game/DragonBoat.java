@@ -111,6 +111,7 @@ public class DragonBoat extends ApplicationAdapter {
 		frameCount = 0;
 
 		//Creating font
+
 		font = new BitmapFont();
 		font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
@@ -481,16 +482,17 @@ public class DragonBoat extends ApplicationAdapter {
 
 		//Draws game over text on screen
 		long end = (endTime-startTime);
-		float time = end/1000F;
+		float time = Math.round(end/1000F);
 		float totalTime = time+(penalty/30);
 		batch.begin();
-		font.draw(batch,"You finished leg " + leg + " in position: " + finished ,(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
-		font.draw(batch,"Your time was: " +time+" seconds with a penalty of: "+penalty/30+" seconds\nFor a total time of: "+totalTime,SCREEN_WIDTH/2,SCREEN_HEIGHT/2+60);
+		font.draw(batch,"You finished leg " + leg + " in position: " + finished ,(SCREEN_WIDTH/2)-97 ,SCREEN_HEIGHT/2);
+		font.draw(batch,"Your time was: " +time+" seconds with a penalty of: "+penalty/30+" seconds",SCREEN_WIDTH/2-182,SCREEN_HEIGHT/2+60);
+		font.draw(batch,"For a total time of: "+totalTime+" seconds",SCREEN_WIDTH/2-102,SCREEN_HEIGHT/2+30);
 		if(leg == 3) {
-			font.draw(batch, "Press space to continue to the final.", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20);
+			font.draw(batch, "Press space to continue to the final.", SCREEN_WIDTH / 2-113, SCREEN_HEIGHT / 2 - 30);
 		}
 		else{
-			font.draw(batch, "Press space to continue.", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20);
+			font.draw(batch, "Press space to continue.", (SCREEN_WIDTH / 2)-77, SCREEN_HEIGHT / 2 - 30);
 		}
 		batch.end();
 
@@ -520,13 +522,16 @@ public class DragonBoat extends ApplicationAdapter {
 
 		//Draws game over text on screen
 		batch.begin();
-		font.draw(batch,"Congratulations you finished the race in position: " + finished ,(SCREEN_WIDTH/2) ,SCREEN_HEIGHT/2);
+		font.draw(batch,"Congratulations you finished the race in position: " + finished ,(SCREEN_WIDTH/2)-161 ,SCREEN_HEIGHT/2);
 		batch.end();
 	}
 
 	private void tutorialScreen(){
 		batch.begin();
-		font.draw(batch,"Use W A S D to move\nAvoid obstacles in the river\nLeaving your lane will cause a penalty to be added to your time\nPress space to select your boat and begin",(SCREEN_WIDTH/2)-100,SCREEN_HEIGHT/2+100);
+		font.draw(batch,"Use W A S D to move",(SCREEN_WIDTH/2)-74,SCREEN_HEIGHT/2+100);
+		font.draw(batch,"Avoid obstacles in the river",(SCREEN_WIDTH/2)-82,SCREEN_HEIGHT/2+70);
+		font.draw(batch,"Leaving your lane will cause a penalty to be added to your time",(SCREEN_WIDTH/2)-200,SCREEN_HEIGHT/2+40);
+		font.draw(batch,"Press space to select your boat and begin",(SCREEN_WIDTH/2)-135,SCREEN_HEIGHT/2+10);
 		batch.end();
 
 		//Allows pressing of space to continue game
