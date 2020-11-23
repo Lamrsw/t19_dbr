@@ -1,6 +1,6 @@
 # Download the game
 
-Download the latest version of the game [here](https://github.com/Lamrsw/t19_dbr/tree/main).
+Download the latest source code of the game [here](https://github.com/Lamrsw/t19_dbr/tree/main) or download the latest jar file [here](https://lamrsw.github.io/t19_dbr/Team19%20Dragon%20Boat%20Race.jar)
 
 ## Downloads
 [Requirements](https://lamrsw.github.io/t19_dbr/Req1.pdf)
