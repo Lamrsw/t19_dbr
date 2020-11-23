@@ -28,6 +28,7 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Texture variables
 	private Texture boat;
+	private Texture playerBoat;
 	private Texture obstacleImageA;
 	private Texture obstacleImageB;
 	private Texture obstacleImageC;
@@ -119,6 +120,7 @@ public class DragonBoat extends ApplicationAdapter {
 
 		//Boat images
 		boat = new Texture("boat.png");
+		playerBoat = new Texture("mainBoat.png");
 
 		//Reset boats
 		mainBoat.reset();
@@ -174,6 +176,7 @@ public class DragonBoat extends ApplicationAdapter {
 		//Boat select screen
 		selectStage = new Stage(new ScreenViewport());
 		Gdx.input.setInputProcessor(selectStage);
+
 		//Creating select buttons
 		createButtons();
 	}
@@ -231,7 +234,7 @@ public class DragonBoat extends ApplicationAdapter {
 			}
 
 			//Rendering boats
-			batch.draw(boat, mainBoat.x, mainBoat.y);
+			batch.draw(playerBoat, mainBoat.x, mainBoat.y);
 			batch.draw(boat, aiBoatOne.x, aiBoatOne.y);
 			batch.draw(boat, aiBoatTwo.x, aiBoatTwo.y);
 			batch.draw(boat, aiBoatThree.x, aiBoatThree.y);
