@@ -23,9 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2334db75-d553-4a2c-9c32-0a7011688692" name="Default Changelist" comment="Added boat select screen, tutorial screen and timing for each leg">
+      <change afterPath="$PROJECT_DIR$/core/assets/mainBoat.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/DragonBoat.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/DragonBoat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/Obstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/Obstacle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
