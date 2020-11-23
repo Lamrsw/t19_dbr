@@ -2,6 +2,11 @@ package com.dbr.game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
+/**
+ * The main obstacle class which creates obstacles
+ * for the boats to avoid them
+ */
+
 public class Obstacle extends Rectangle{
     Texture texture;
 

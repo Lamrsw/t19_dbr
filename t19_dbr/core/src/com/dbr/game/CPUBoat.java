@@ -8,10 +8,34 @@ import static com.badlogic.gdx.math.MathUtils.random;
 public class CPUBoat extends Boat{
 
     CPUBoat(Integer health, float speed, Integer acceleration, Integer maneuverability, float penaltyTime,Integer width,Integer height, Integer maxX, Integer minX, Integer x, Integer y){
+        
+        /**
+         * Creates a new instance of the class Boat
+         * @param int health This is the health of the boat
+         * @param int maneuverability This is the maneuverability of the boat
+         * @param int width This is the width of the boat
+         * @param int height This is the height of the boad
+         * @param int maxX This is the maximum X
+         * @param int minX This is the minimum X
+         * @param int maxY This is the maximum Y
+         * @param int minY This is the minimum Y
+         * @param float speed This is the speed of the boat
+         * @param float acceleration This is the acceleration of the boat
+         * @param float penaltyTime This is how much time has been added as a penalty
+         * @return None
+         */
+
         super(health, speed, acceleration, maneuverability, penaltyTime,width,height, maxX, minX, x, y);
     };
 
      public void move(Array<Obstacle> obstacles, int frames){
+
+        /**
+         * This is the algorithm which moves the boats randomly
+         * @param Array<Obstacle> obstacles This is the list of obstacles which can hit the boats
+         * @param int frames This is the number of frames
+         * @return None
+         */
 
         //Boats should only move if they have health left
         if(getHealth() != 0) {
@@ -50,6 +74,13 @@ public class CPUBoat extends Boat{
     @Override
     public int finishCheck(Obstacle finishLine){
 
+        /**
+         * This checks whether the boats have crossed the
+         * finish lines
+         * @param Obstacle finishline This is the finishline obstacle
+         * @return None
+         */
+
         if (this.overlaps(finishLine)){
             this.y = -200;
             this.x = -200;
@@ -62,6 +93,15 @@ public class CPUBoat extends Boat{
 
     @Override
     public Iterator<Obstacle> collisionCheck(Obstacle obstacle, Iterator<Obstacle> iter){
+
+        /**
+         * This checks whether the CPU boats have hit
+         * an obstacle and the decreases the health
+         * @param Array<Obstacle> obstacles This is the array of obstacles that can hit the boat
+         * @param int frames This is the number of frames 
+         * @return None
+         */
+
         if (obstacle.overlaps(this)){
             iter.remove();
             this.reduceHealth(1);
