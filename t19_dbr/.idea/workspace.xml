@@ -22,10 +22,41 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2334db75-d553-4a2c-9c32-0a7011688692" name="Default Changelist" comment="Added boat select screen, tutorial screen and timing for each leg">
-      <change afterPath="$PROJECT_DIR$/core/assets/mainBoat.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e1e0f745-f6bf-4564-afaf-da6314d280d6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.5/fileChanges/last-build.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.5/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/assets/skin/font-export.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/core/assets/skin/font-export.fnt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/assets/skin/font-subtitle-export.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/core/assets/skin/font-subtitle-export.fnt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/assets/skin/font-title-export.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/core/assets/skin/font-title-export.fnt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/assets/skin/level-plane-ui.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/core/assets/skin/level-plane-ui.atlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/assets/skin/level-plane-ui.json" beforeDir="false" afterPath="$PROJECT_DIR$/core/assets/skin/level-plane-ui.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/tmp/jar/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/jar/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/Boat.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/Boat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/CPUBoat.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/CPUBoat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/DragonBoat.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/DragonBoat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/Obstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/Obstacle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/dbr/game/PlayerBoat.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/dbr/game/PlayerBoat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktop/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/skin/font-export.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/skin/font-export.fnt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/skin/font-subtitle-export.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/skin/font-subtitle-export.fnt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/skin/font-title-export.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/skin/font-title-export.fnt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/skin/level-plane-ui.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/skin/level-plane-ui.atlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktop/build/resources/main/skin/level-plane-ui.json" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/resources/main/skin/level-plane-ui.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktop/src/com/dbr/game/desktop/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/src/com/dbr/game/desktop/DesktopLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

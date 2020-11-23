@@ -1,3 +1,13 @@
+/**
+ * The implementation of the dragon boat race assignment
+ * that allows the user to compete against CPU boats
+ * in order to win the race. 
+ * 
+ * @author Luke Roberts, Justin Mendon, Jack Longmuir, Dougie Sword, Andrea Zhu, Julia Kunikowska
+ * @version 1.0
+ * @since 22/10/2020
+ */
+
 package com.dbr.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
@@ -24,24 +34,24 @@ import java.util.Iterator;
 import static com.badlogic.gdx.math.MathUtils.random;
 
 public class DragonBoat extends ApplicationAdapter {
+
+/**
+ * This class creates a new instance of the Dragon Boat
+ * Race. It creates constants like player boat, ai boats, 
+ * texture backgrounds and size of the game window.
+ * @param None
+ * @return None
+ */
+
 	private SpriteBatch batch;
 
 	//Texture variables
-	private Texture boat;
-	private Texture playerBoat;
-	private Texture obstacleImageA;
-	private Texture obstacleImageB;
-	private Texture obstacleImageC;
+	private Texture boat,obstacleImageA, obstacleImageB, obstacleImageC ,barrierImage, finishImage, healthImage;
 	private Array<Texture> obstacleImage;
-	private Texture barrierImage;
-	private Texture finishImage;
-	private Texture healthImage;
 
 	//background images
-	private Texture backImage1;
-	private Texture backImage2;
-	private int backImage1y;
-	private int backImage2y;
+	private Texture backImage1, backImage2;
+	private int backImage1y, backImage2y;
 
 	//Font variables
 	private BitmapFont font;
@@ -103,6 +113,13 @@ public class DragonBoat extends ApplicationAdapter {
 
 	@Override
 	public void create () {
+
+		/**
+		 * This creates a new game in a seperate window.
+		 * @param None
+		 * @return None
+		 */
+
 		penalty = 0;
 
 		//Used to keep track of leg time
@@ -120,7 +137,6 @@ public class DragonBoat extends ApplicationAdapter {
 
 		//Boat images
 		boat = new Texture("boat.png");
-		playerBoat = new Texture("mainBoat.png");
 
 		//Reset boats
 		mainBoat.reset();
@@ -176,13 +192,20 @@ public class DragonBoat extends ApplicationAdapter {
 		//Boat select screen
 		selectStage = new Stage(new ScreenViewport());
 		Gdx.input.setInputProcessor(selectStage);
-
 		//Creating select buttons
 		createButtons();
 	}
 
 	@Override
 	public void render () {
+
+		/**
+		 * This renders all the images that appear in the window
+		 * based on the frames per second based on the game
+		 * state.
+		 * @param None
+		 * @return None
+		 */
 
 		if(tutorial == false){
 			tutorialScreen();
@@ -234,7 +257,7 @@ public class DragonBoat extends ApplicationAdapter {
 			}
 
 			//Rendering boats
-			batch.draw(playerBoat, mainBoat.x, mainBoat.y);
+			batch.draw(boat, mainBoat.x, mainBoat.y);
 			batch.draw(boat, aiBoatOne.x, aiBoatOne.y);
 			batch.draw(boat, aiBoatTwo.x, aiBoatTwo.y);
 			batch.draw(boat, aiBoatThree.x, aiBoatThree.y);
@@ -304,6 +327,13 @@ public class DragonBoat extends ApplicationAdapter {
 	
 	@Override
 	public void dispose () {
+
+		/**
+		 * Gets rid of objects when the leg is over
+		 * @param None
+		 * @return None
+		 */
+
 		batch.dispose();
 		boat.dispose();
 		obstacleImageA.dispose();
@@ -322,7 +352,17 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Checks collisions between boats and obstacles and removes boats from screen if their health is 0
 	private void collisionCheck(Obstacle obstacle, Iterator<Obstacle> iter){
-        if (obstacle.overlaps(mainBoat)) {
+		
+		/**
+		 * This checks whether the player boat has hit
+		 * an obstacle and if yes, then it reduces
+		 * the boats health.
+		 * @param Obstacle obstacle This is an obstacle that the player might hit
+		 * @param Iterator<Obstacles> iter This is an iterator which goes through the obstacle list
+		 * @return None
+		 */
+		
+		if (obstacle.overlaps(mainBoat)) {
 			iter.remove();
 			mainBoat.reduceHealth(1);
 			if (mainBoat.getHealth() == 0) {
@@ -337,6 +377,12 @@ public class DragonBoat extends ApplicationAdapter {
 
     //Checks for the boats crossing the finish line
     private void finishCheck(){
+
+		/**
+		 * This checks whether the boat crosses the finish line.
+		 * @param None
+		 * @return None
+		 */
 
 		if(mainBoat.overlaps(finishLine) && finished == -1){
 			endTime = System.currentTimeMillis();
@@ -354,6 +400,14 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Spawns obstacles in at the top of the screen with a random x value
 	private void spawnObstacle(){
+
+		/**
+		 * This creates and spawns obstacles to add
+		 * to the Array<Obstacles> obstacles
+		 * @param None
+		 * @return None
+		 */
+
 		Obstacle obstacle = new Obstacle(obstacleImage.get(random(0,2)));
 		obstacle.x = random(0, SCREEN_WIDTH-64);
 		obstacle.y = SCREEN_HEIGHT;
@@ -365,6 +419,14 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Boat select button creation
 	private void createButtons(){
+
+		/**
+		 * This creates buttons that the player can press to
+		 * select which boat they want to play with
+		 * @param None
+		 * @return None
+		 */
+
 		//skin used from https://github.com/czyzby/gdx-skins
 		Skin buttonSkin = new Skin(Gdx.files.internal("skin/level-plane-ui.json"));
 
@@ -451,6 +513,13 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Draws the barriers between lanes at regular intervals
     private void createBarrier(int count){
+
+		/**
+		 * This creates a barrior around the lane so that the
+		 * player knows where the lanes are
+		 * @param int count This is the current barrier being drawn
+		 */
+
 		Rectangle barrier = new Rectangle();
 		barrier.x = (SCREEN_WIDTH/5)*count;
 		barrier.y = 0;
@@ -461,6 +530,13 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Draws the health bar
 	private void drawHealth(int num){
+
+		/**
+		 * This draws the health bar at the top
+		 * @param int num This is the amount of health
+		 * @return None
+		 */
+
 		batch.draw(healthImage,(num*16)+num,SCREEN_HEIGHT-32);
 	}
 
@@ -469,6 +545,14 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Draws game over screen
 	private void gameOverScreen(){
+
+		/** This displays a game over screen to the user.
+		 * It allows the player to replay the game
+		 * if they want to.
+		 * @param None
+		 * @return None
+		 */
+
 		//Sets game over background to black
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -497,6 +581,17 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Screen for end of first three legs
 	private void midScreen(){
+
+		/**
+		 * This creates a screen for inbetween the legs to
+		 * show that the leg has finished and prepare
+		 * the player for the next leg. It displays
+		 * the position they finished the leg as well
+		 * as the time and any penalties
+		 * @param None
+		 * @return None
+		 */
+
 		//Sets game over background to black
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -537,6 +632,15 @@ public class DragonBoat extends ApplicationAdapter {
 
 	//Screen for end of third leg
 	private void endScreen(){
+
+		/**
+		 * Creates a screen which shows that the player has
+		 * completed the game. It displays the position they
+		 * have finished.
+		 * @param None
+		 * @return None
+		 */
+
 		//Sets game over background to black
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -548,6 +652,15 @@ public class DragonBoat extends ApplicationAdapter {
 	}
 
 	private void tutorialScreen(){
+
+		/**
+		 * Displays a screen at the beginning of the game
+		 * which briefly explains to the player how to move
+		 * as well as how to play the game
+		 * @param None
+		 * @return None
+		 */
+
 		batch.begin();
 		font.draw(batch,"Use W A S D to move",(SCREEN_WIDTH/2)-74,SCREEN_HEIGHT/2+100);
 		font.draw(batch,"Avoid obstacles in the river",(SCREEN_WIDTH/2)-82,SCREEN_HEIGHT/2+70);
@@ -562,6 +675,16 @@ public class DragonBoat extends ApplicationAdapter {
 	}
 
 	private void selectBoatScreen(){
+
+		/**
+		 * Displays a screen which allows the user to select 
+		 * which boat they want to use by pressing a button
+		 * with their mouse. It dispalys the different boats
+		 * and their properties
+		 * @param None
+		 * @return None
+		 */
+
 		//Sets game over background to black
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
