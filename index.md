@@ -42,7 +42,7 @@ Rewrote large parts of the document, keeping the main content the same, but rewo
 
 ## Meeting Minutes
 
-Google Document of progress made during team meetings. Each meeting is dated in DD/MM/YY format 
-https://docs.google.com/document/d/1eiJhqV4Bl752chZtqEH_G-37kRhs8Oh7a3Mmpa572OU/edit?usp=sharing
+Google Document of progress made during team meetings. Each meeting is dated in DD/MM/YY format:
+[Meeting Minutes](https://docs.google.com/document/d/1eiJhqV4Bl752chZtqEH_G-37kRhs8Oh7a3Mmpa572OU/edit?usp=sharing)
 
 This is submitted as further supporting evidence of our progression through the project as a team.
