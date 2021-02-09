@@ -3,17 +3,15 @@
 Download the latest source code of the game [here](https://github.com/Lamrsw/t19_dbr/tree/main) or download the latest jar file [here](https://lamrsw.github.io/t19_dbr/Team19%20Dragon%20Boat%20Race.jar)
 
 ## Downloads
-[Requirements](https://lamrsw.github.io/t19_dbr/Req1.pdf)
+[Requirements](https://drive.google.com/file/d/1fJtfL1cvWGoXA-fqc81k_h4EbG9e3PYk/view?usp=sharing)
 
-[Architecture](https://lamrsw.github.io/t19_dbr/Arch1.pdf)
+[Architecture](https://drive.google.com/file/d/1M3WQ2uc54VWm8yJrjsxnC-_6KaNd1sBv/view?usp=sharing)
 
-[Method selection and planning](https://lamrsw.github.io/t19_dbr/Plan1.pdf)
+[Method selection and planning](https://drive.google.com/file/d/127g3oG0fw8x78h7kRDPhKyftEDLYJDQi/view?usp=sharing)
 
-[Risk Assessment and Mitigation](https://lamrsw.github.io/t19_dbr/Risk1.pdf) 
+[Risk Assessment and Mitigation](https://drive.google.com/file/d/1CdAtPNLVwWHhnswU8ztWFHnI6-2j06Xh/view?usp=sharing) 
 
-[Implementation](https://lamrsw.github.io/t19_dbr/Impl1.pdf)
-
-[Optional self-assessment table](https://lamrsw.github.io/t19_dbr/SelfAss1.pdf)
+[Implementation](https://drive.google.com/file/d/1OUEex5pZIwwCqdixRI-vgpoMugaChaZj/view?usp=sharing)
 
 ## Older Game Versions
 
@@ -26,19 +24,19 @@ Download the latest source code of the game [here](https://github.com/Lamrsw/t19
 ## Weekly Snapshots of the Planning Document
 
 ### 15/10/20 (second week) 
-The plan [document](https://raw.githubusercontent.com/Lamrsw/t19_dbr/website/stakeholders.png) was created, and the stakeholders identified to inform the Q&A document we made for the team-customer meeting that would happen on the 19th.
+The plan [document](https://drive.google.com/file/d/1j8LLMSKluiSLE-hQ0E2C_ASBae57ATgQ/view?usp=sharing) was created, and the stakeholders identified to inform the Q&A document we made for the team-customer meeting that would happen on the 19th.
 
-The Q&A document can be found [here](https://raw.githubusercontent.com/Lamrsw/t19_dbr/website/Questions%20for%20Team-Customer%20meeting.pdf).
+The Q&A document can be found [here](https://drive.google.com/file/d/1t4PujBonugqciae725pVmtqvHFLH_DVC/view?usp=sharing).
 
 ### 29/10/20 (fourth week)
 Relevant hardware and software requirements updated with information gained from the Q&A.
-We assigned roles and responsibilities to deliverables. This was formalised both in the [document](https://raw.githubusercontent.com/Lamrsw/t19_dbr/website/project_organisation.png), and in [Gantt chart](https://raw.githubusercontent.com/Lamrsw/t19_dbr/website/gantt.png) and [Work Breakdown Structure](https://raw.githubusercontent.com/Lamrsw/t19_dbr/website/wbs.png) diagrams that we produced.
+We assigned roles and responsibilities to deliverables. This was formalised both in the [document](https://drive.google.com/file/d/1Bov8Dd1_C9JjpvKxZD4IF_BuAwLXCjvo/view?usp=sharing), and in [Gantt chart](https://drive.google.com/file/d/1EpdWFetZ8LwTFA_nVhFUBFy_IsAoY69K/view?usp=sharing) and [Work Breakdown Structure](https://drive.google.com/file/d/1A_SCxY-CqPNBJjQCavvrlJI2WnFDlviy/view?usp=sharing) diagrams that we produced.
 
 ### 12/11/2020
-Added assessment criteria (red) to guide the deliverable, a short introduction, and identification of project constraints. See a snapshot of the document [here](https://raw.githubusercontent.com/Lamrsw/t19_dbr/website/sys_plan.png).
+Added assessment criteria (red) to guide the deliverable, a short introduction, and identification of project constraints. See a snapshot of the document [here](https://drive.google.com/file/d/1VqVYdte1RJzJXbqF7YZ4w6PRUUnuR1sL/view?usp=sharing).
 
 ### 19/11/2020
-Rewrote large parts of the document, keeping the main content the same, but rewording for clarity and to keep the deliverable within the page count. This is the final version, and can be found [here](https://lamrsw.github.io/t19_dbr/Plan1.pdf).
+Rewrote large parts of the document, keeping the main content the same, but rewording for clarity and to keep the deliverable within the page count. This is the final version, and can be found [here](https://drive.google.com/file/d/127g3oG0fw8x78h7kRDPhKyftEDLYJDQi/view?usp=sharing).
 
 ## Meeting Minutes
 
